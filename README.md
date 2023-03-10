@@ -1,5 +1,13 @@
 # Equipo-ERROR404
 
+.
+
+
+
+//
+
+
+
 roco m
 booking@rocomedina.com
 https://www.linkedin.com/in/rocomedina/
