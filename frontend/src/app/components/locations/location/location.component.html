@@ -1,0 +1,181 @@
+<form *ngIf="form" [formGroup]="form" class="d-flex flex-column w-100 p-4 content--standard">
+    <div class="d-flex align-items-center w-100 mb-3">
+        <h1 *ngIf="!guid" class="heading--desktop04">
+            Create Location
+        </h1>
+        <h1 *ngIf="guid" class="heading--desktop04">
+            Update Location
+        </h1>
+        <div class="ms-auto">
+            <button class="btn btn--null" (click)="list()">
+                <i class="fa fa-list me-2"></i>
+                List
+            </button>
+            <button *ngIf="guid" class="btn btn--null ms-2">
+                <i class="fa fa-copy me-2"></i>
+                Copy
+            </button>
+            <button *ngIf="guid" class="btn btn--null ms-2">
+                <i class="fa fa-share-alt me-2"></i>
+                Share
+            </button>
+        </div>
+    </div>
+    <div class="d-flex flex-column w-100">
+        <div class="d-flex flex-column w-100 pe-2 py-3">
+            <span class="p-float-label w-100">
+                <input autocomplete="off" required formControlName="name" [readonly]="!editable" [(ngModel)]="body.name" id="name" class="input--standard w-100" type="text" pInputText> 
+                <label for="name">Country Name<small class="required">*</small></label>
+            </span>
+            <span class="text-danger text--desktop04 semibold mt-1 ms-1" *ngIf="hasError('name')">
+                {{hasError('name')}}
+            </span>
+        </div>
+        <div class="d-flex flex-column w-100 mt-2">
+            <p-table [paginator]="true" [rows]="10" class="w-100" #dt [value]="body.countrystate">
+                <ng-template pTemplate="caption">
+                    <div class="d-flex align-items-center table-header ps-md-3 w-100">
+                        <h3 class="text--desktop01 my-2">
+                            States
+                        </h3>
+                        <div class="ms-md-auto"></div>
+                        <button *ngIf="editable && hasBulkAction(body.countrystate)" class="btn btn--danger text--desktop03 px-3" (click)="removeSelected(body.$guid, body.countrystate)">
+                            <i class="fa fa-times me-2"></i>
+                            Remove selected
+                        </button>
+                        <button *ngIf="editable" class="btn btn--secondary ms-2 text--desktop03 px-3" (click)="addState()">
+                            <i class="fa fa-plus me-2"></i>
+                            Add State
+                        </button>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="th--options" *ngIf="editable"></th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Cities</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item let-editing="editing" let-ri="rowIndex">
+                    <tr>
+                        <td style="width: 10%" *ngIf="editable">
+                            <p-checkbox [binary]="true" [ngModelOptions]="{standalone: true}" value="1" [(ngModel)]="item.$_select"></p-checkbox>
+                        </td>
+                        <td class="text-center" style="width: 45%" pEditableColumn>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <span *ngIf="!editable">
+                                        {{item.name || 'Name...'}}
+                                    </span>
+                                    <input autocomplete="off" [ngModelOptions]="{standalone: true}" *ngIf="editable" pInputText class="input--standard w-100" type="text" [(ngModel)]="item.name">
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{item.name || 'Name...'}}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td class="text-center cursor-pointer" (click)="dialogCreateCity(item)" style="width: 45%" pEditableColumn>
+                            <span class="me-2">
+                                {{getCities(item)}}
+                            </span>
+                            <i class="fa fa-edit text--desktop01"></i>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+    <div class="d-flex w-100 mt-4 content--footer" *ngIf="!guid" [@enterAnimation]>
+        <div class="ms-md-auto">
+            <button (click)="submit()" class="btn btn--standard">Save</button>
+        </div>
+    </div>
+    <div class="d-flex w-100 mt-4 content--footer" *ngIf="guid && !editable" [@enterAnimation]>
+        <div class="ms-md-auto">
+            <button (click)="editable = true" class="btn btn--secondary">
+                <i class="fa fa-edit me-2"></i>
+                Edit
+            </button>
+        </div>
+    </div>
+    <div class="d-flex w-100 mt-4 content--footer" *ngIf="guid && editable" [@enterAnimation]>
+        <div class="ms-md-auto">
+            <button (click)="restore()" class="btn btn--null me-2">Cancel</button>
+        </div>
+        <div class="ms-md-2">
+            <button (click)="submit()" class="btn btn--standard">
+                <i class="fa fa-save me-2"></i>
+                Save
+            </button>
+        </div>
+    </div>
+</form>
+
+<p-dialog [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}" [modal]="true" [(visible)]="displayDialogCreateCity">
+    <ng-template pTemplate="header">
+        <h5 class="text--desktop01 m-0">
+            {{!displayDialogCreateCity?.content?.$guid ? 'Create cities' : 'Edit cities'}}
+        </h5>
+    </ng-template>
+    <div class="d-flex w-100 p-4" *ngIf="displayDialogCreateCity">
+        <div class="d-flex flex-column w-100 pe-2 py-3">
+            <p-table [paginator]="true" [rows]="10" class="w-100" #dt [value]="displayDialogCreateCity.content.city">
+                <ng-template pTemplate="caption">
+                    <div class="d-flex align-items-center table-header ps-md-3 w-100">
+                        <h3 class="text--desktop01 my-2">
+                            Cities
+                        </h3>
+                        <div class="ms-md-auto"></div>
+                        <button *ngIf="editable && hasBulkAction(displayDialogCreateCity.content.city)" class="btn btn--danger text--desktop03 px-3" (click)="removeSelected(displayDialogCreateCity.content.$guid, displayDialogCreateCity.content.city)">
+                            <i class="fa fa-times me-2"></i>
+                            Remove selected
+                        </button>
+                        <button *ngIf="editable" class="btn btn--secondary ms-2 text--desktop03 px-3" (click)="addCity(displayDialogCreateCity.content)">
+                            <i class="fa fa-plus me-2"></i>
+                            Add City
+                        </button>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="th--options" *ngIf="editable"></th>
+                        <th class="text-center">Name</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item let-editing="editing" let-ri="rowIndex">
+                    <tr>
+                        <td style="width: 10%" *ngIf="editable">
+                            <p-checkbox [binary]="true" [ngModelOptions]="{standalone: true}" value="1" [(ngModel)]="item.$_select"></p-checkbox>
+                        </td>
+                        <td class="text-center" style="width: 45%" pEditableColumn>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <span *ngIf="!editable">
+                                        {{item.name || 'Name...'}}
+                                    </span>
+                                    <input autocomplete="off" [ngModelOptions]="{standalone: true}" *ngIf="editable" pInputText class="input--standard w-100" type="text" [(ngModel)]="item.name">
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{item.name || 'Name...'}}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <div class="d-flex w-100">
+            <div class="ms-md-auto">
+                <button class="btn btn--null me-2" (click)="displayDialogCreateCity = null">Cancel</button>
+            </div>
+            <div class="ms-md-2">
+                <button class="btn btn--standard" (click)="submitCreateCity()">
+                    <i class="fa fa-save me-2"></i>
+                    Accept
+                </button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>

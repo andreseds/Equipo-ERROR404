@@ -1,0 +1,108 @@
+<form *ngIf="form" [formGroup]="form"  class="d-flex flex-column w-100 p-4 content--standard">
+    <div class="d-flex align-items-center w-100 mb-3">
+        <h1 *ngIf="!guid" class="heading--desktop04">
+            Create Supplier
+        </h1>
+        <h1 *ngIf="guid" class="heading--desktop04">
+            Update Supplier
+        </h1>
+        <div class="ms-auto">
+            <button class="btn btn--null" (click)="list()">
+                <i class="fa fa-list me-2"></i>
+                List
+            </button>
+            <button *ngIf="guid" class="btn btn--null ms-2">
+                <i class="fa fa-copy me-2"></i>
+                Copy
+            </button>
+            <button *ngIf="guid" class="btn btn--null ms-2">
+                <i class="fa fa-share-alt me-2"></i>
+                Share
+            </button>
+        </div>
+    </div>
+    <div class="d-flex w-100">
+        <div class="d-flex flex-column pe-2 py-3 col-md-4">
+            <span class="p-float-label w-100">
+                <input autocomplete="off" required formControlName="firstname" [readonly]="!editable" [(ngModel)]="body.firstname" id="firstname" class="input--standard w-100" type="text" pInputText> 
+                <label for="firstname">Firstname<small class="required ms-1">*</small></label>
+            </span>
+            <span class="text-danger semibold mt-1 ms-1" *ngIf="hasError('firstname')">
+                {{hasError('firstname')}}
+            </span>
+        </div>
+        <div class="d-flex flex-column ps-2 py-3 col-md-4">
+            <span class="p-float-label w-100">
+                <input autocomplete="off" required formControlName="lastname" [readonly]="!editable" [(ngModel)]="body.lastname" id="lastname" class="input--standard w-100" type="text" pInputText> 
+                <label for="lastname">Lastname<small class="required ms-1">*</small></label>
+            </span>
+            <span class="text-danger semibold mt-1 ms-1" *ngIf="hasError('lastname')">
+                {{hasError('lastname')}}
+            </span>
+        </div>
+        <div class="d-flex flex-column ps-2 py-3 col-md-4">
+            <span class="p-float-label w-100">
+                <input autocomplete="off" required formControlName="dni" [readonly]="!editable" [(ngModel)]="body.dni" id="dni" class="input--standard w-100" type="text" pInputText> 
+                <label for="dni">DNI<small class="required ms-1">*</small></label>
+            </span>
+            <span class="text-danger semibold mt-1 ms-1" *ngIf="hasError('dni')">
+                {{hasError('dni')}}
+            </span>
+        </div>
+    </div>
+    <div class="d-flex w-100">
+        <div class="d-flex flex-column pe-2 py-3 col-md-4">
+            <span class="p-float-label w-100">
+                <input autocomplete="off" required formControlName="phone1" [readonly]="!editable" [(ngModel)]="body.phone1" id="phone1" class="input--standard w-100" type="text" pInputText> 
+                <label for="phone1">Phone 1<small class="required ms-1">*</small></label>
+            </span>
+            <span class="text-danger semibold mt-1 ms-1" *ngIf="hasError('phone1')">
+                {{hasError('phone1')}}
+            </span>
+        </div>
+        <div class="d-flex flex-column ps-2 py-3 col-md-4">
+            <span class="p-float-label w-100">
+                <input autocomplete="off" [ngModelOptions]="{standalone: true}" [readonly]="!editable" [(ngModel)]="body.phone2" id="phone2" class="input--standard w-100" type="text" pInputText> 
+                <label for="phone2">Phone 2</label>
+            </span>
+        </div>
+        <div class="d-flex flex-column ps-2 py-3 col-md-4">
+            <span class="p-float-label w-100">
+                <input autocomplete="off" [ngModelOptions]="{standalone: true}" [readonly]="!editable" [(ngModel)]="body.birthdate" id="birthdate" class="input--standard w-100" type="date" pInputText> 
+                <label for="birthdate">Birthdate</label>
+            </span>
+        </div>
+    </div>
+    <div class="d-flex w-100">
+        <div class="d-flex flex-column pe-2 py-3 col-md-4">
+            <span class="p-float-label w-100">
+                <input autocomplete="off" [ngModelOptions]="{standalone: true}" [readonly]="!editable" [(ngModel)]="body.status" id="status" class="input--standard w-100" type="text" pInputText> 
+                <label for="status">Status</label>
+            </span>
+        </div>
+    </div>
+    <div class="d-flex w-100 mt-4 content--footer" *ngIf="!guid" [@enterAnimation]>
+        <div class="ms-md-auto">
+            <button (click)="submit()" class="btn btn--standard">Save</button>
+        </div>
+    </div>
+    <div class="d-flex w-100 mt-4 content--footer" *ngIf="guid && !editable" [@enterAnimation]>
+        <div class="ms-md-auto">
+            <button (click)="editable = true" class="btn btn--secondary">
+                <i class="fa fa-edit me-2"></i>
+                Edit
+            </button>
+        </div>
+    </div>
+    <div class="d-flex w-100 mt-4 content--footer" *ngIf="guid && editable" [@enterAnimation]>
+        <div class="ms-md-auto">
+            <button (click)="restore()" class="btn btn--null me-2">Cancel</button>
+        </div>
+        <div class="ms-md-2">
+            <button (click)="submit()" class="btn btn--standard">
+                <i class="fa fa-save me-2"></i>
+                Save
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,42 @@
+@media(min-width: 768px) {
+    .heading--desktop01 {
+        font-size: 56px !important;
+        line-height: 60px;
+    }
+
+    .heading--desktop02 {
+        font-size: 48px !important;
+        line-height: 52px;
+    }
+
+    .heading--desktop03 {
+        font-size: 36px !important;
+        line-height: 42px;
+    }
+
+    .heading--desktop04 {
+        font-size: 28px !important;
+        line-height: 32px;
+    }
+
+    .heading--desktop05 {
+        font-size: 22px !important;
+        line-height: 24px;
+    }
+
+    .text--desktop01 {
+        font-size: 18px !important;
+    }
+
+    .text--desktop02 {
+        font-size: 16px !important;
+    }
+
+    .text--desktop03 {
+        font-size: 14px !important;
+    }
+
+    .text--desktop04 {
+        font-size: 12px !important;
+    }
+}

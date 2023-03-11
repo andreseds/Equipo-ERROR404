@@ -1,0 +1,23 @@
+@import 'src/theme/colours';
+
+ul {
+    display: flex;
+    width: 100%;
+    li {
+        width: 48px;
+        height: 48px;
+        background: transparent;
+        display: flex;
+        cursor: pointer;
+        transition: 0.3s ease all;
+        &.active {
+            background: $lightgrey2;
+            border-radius: 50px;
+        }
+        span {
+            margin: auto;
+            color: $black;
+            user-select: none;
+        }
+    }
+}
