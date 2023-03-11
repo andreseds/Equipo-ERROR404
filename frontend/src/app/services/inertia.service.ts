@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Response } from '../models/response.model';
 import { UiService } from './ui.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DefaultResponse, LoginDto, Pagination } from '../models/inertia.entity';
 
-const endpoint = 'http://localhost:3001/';
+const endpoint = 'http://localhost:3000';
 const TENANT_NAME = 'a6a5787d-7fac-4c57-8e04-686dc8a57408';
 
 @Injectable({
@@ -22,7 +21,7 @@ export class InertiaService {
                 throw res.message;
             }
             this.token = res.object.data.accessToken;
-            this.ui.messageSuccess(res.message);
+            this.ui.messageSuccess('Welcome');
             return true;
         } catch (ex) {
             this.ui.messageError(<string>ex);
