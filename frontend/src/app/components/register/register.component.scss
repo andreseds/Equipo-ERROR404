@@ -9,6 +9,14 @@ body{
     overflow: hidden;
 }
 
+p{
+    display: block;
+	text-align: right;
+	text-decoration: none;
+	transition: .3s;
+    color: rgb(51,51,51);
+}
+
 .wave{
 	position: fixed;
 	bottom: 0;
