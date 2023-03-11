@@ -7,6 +7,10 @@ body{
     text-align: center;
 }
 
+form{
+    display: flex;
+    flex-direction: column;
+}
 /* Inputs */
 
 input[type="text"], input[type="password"]{
@@ -33,4 +37,20 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #00b8eb;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    text-align: center; 
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    text-align: center; 
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
