@@ -1,0 +1,366 @@
+{
+    "dbconnection": {
+        "guid": "dca2775b-b160-4641-812a-1f7dfd5d7fcb",
+        "properties": {
+            "username": {
+                "type": "text",
+                "guid": "779e5794-418e-419b-a251-513c28aaef6f"
+            },
+            "pass": {
+                "type": "text",
+                "guid": "d611570c-e356-403f-b6f7-4ced0a6bfd8d"
+            },
+            "host": {
+                "type": "text",
+                "guid": "005ede73-8ff1-4fa9-a853-cfb195ed608e"
+            },
+            "port": {
+                "type": "text",
+                "guid": "a63f844d-c6f7-4661-928f-c51ec76c88f5"
+            },
+            "tenants": {
+                "type": "1n1",
+                "guid": "adecab10-8813-41e7-a919-f69c091f5b57"
+            },
+            "guid": {
+                "type": "563394f8-578e-4a5e-a115-99c8063f6735",
+                "guid": "72bebf6c-4059-4897-8cf9-462c60be24e0"
+            }
+        }
+    },
+    "users": {
+        "guid": "34795652-3a55-4c8f-94f7-cb8e72c3fe5e",
+        "properties": {
+            "username": {
+                "type": "text",
+                "guid": "9af5b2d4-cba9-4c98-8d7e-d2fcada520e6"
+            },
+            "admins": {
+                "type": "1n1",
+                "guid": "b487e32c-043a-4c62-b67c-d2476fb29ca2"
+            },
+            "guid": {
+                "type": "d3aab490-d574-472f-8495-3309b47eb70c",
+                "guid": "dc345191-3d30-4cde-b19c-f2f03c9b71d0"
+            },
+            "clients": {
+                "type": "1n1",
+                "guid": "42e4719f-05ee-4413-8ae1-a7d0ba9f13cf"
+            },
+            "email": {
+                "type": "text",
+                "guid": "99c2f91e-8a4f-4fdc-ba48-0fdc518b6464"
+            },
+            "password": {
+                "type": "password",
+                "guid": "d40e4dc4-d039-461a-b03b-9190cc11b20d"
+            },
+            "usersxroles": {
+                "type": "1n+",
+                "guid": "fa67e0e0-ed74-4cae-b3a6-42df0158c0b5"
+            },
+            "usersxchunks": {
+                "type": "1n+",
+                "guid": "e5a44d6a-2462-4935-8ece-465b731fe366"
+            },
+            "lang": {
+                "type": "smalltext",
+                "guid": "a9a358ba-e86f-4922-b6b8-0d5d7a077906"
+            },
+            "timezone": {
+                "type": "smalltext",
+                "guid": "9bd8c669-4f89-402d-9912-e0250c866623"
+            },
+            "status": {
+                "type": "int",
+                "guid": "db6eddd9-f389-4896-a1e3-076c738c6721"
+            },
+            "loginFailedCount": {
+                "type": "loginFailedCount",
+                "guid": "188770e9-c335-4db3-86c5-bab897b4e68d"
+            },
+            "lastPasswordUpdate": {
+                "type": "datetime",
+                "guid": "7fd74c5f-81fa-4277-88f9-ed6a746cacc1"
+            }
+        }
+    },
+    "admins": {
+        "guid": "5f87e28f-9444-4419-afe9-1a37bdc394e0",
+        "properties": {
+            "uniqueaccessid": {
+                "type": "text",
+                "guid": "c9df4009-a67a-44c6-b1a4-3fbd592b750d"
+            },
+            "tickets": {
+                "type": "1n-",
+                "guid": "8fc453ba-4e16-4e4a-9281-0073510f8d6e"
+            },
+            "guid": {
+                "type": "bef20115-e38e-4077-bd70-03bda7e6b509",
+                "guid": "e327f9d5-7fef-4ed0-832f-978def5ee9a6"
+            },
+            "users": {
+                "type": "1n-",
+                "guid": "14b9e0be-52e8-4c2b-ab0b-360652a79cbe"
+            }
+        }
+    },
+    "tickets": {
+        "guid": "b2b3fbf0-aa0b-4bda-9735-21ff9d9b9a54",
+        "properties": {
+            "code": {
+                "type": "text",
+                "guid": "e14b2774-3edd-48d5-8a97-a54f6253c5ab"
+            },
+            "description": {
+                "type": "longtext",
+                "guid": "0adde08c-6a36-4289-96cb-78f0a17efc75"
+            },
+            "status": {
+                "type": "smalltext",
+                "guid": "e8c70f5f-7f25-48d6-ad5c-0a354cd5fe6e"
+            },
+            "admins": {
+                "type": "1n+",
+                "guid": "c404c21c-6ece-457b-a49b-3e7ffe11780d"
+            },
+            "clients": {
+                "type": "1n-",
+                "guid": "12be21d8-1f38-4ab1-91c8-0322d3b376a0"
+            },
+            "guid": {
+                "type": "00e2745b-de5d-418b-bce9-ad8474b0e802",
+                "guid": "faf40335-a0b2-4f14-b73a-8ef686fb1b1a"
+            }
+        }
+    },
+    "subscriptions": {
+        "guid": "73a8e238-b0fa-44dc-9294-5fb88ca54d53",
+        "properties": {
+            "name": {
+                "type": "text",
+                "guid": "add474ad-4d11-45ec-a327-64787b5ae7b0"
+            },
+            "description": {
+                "type": "text",
+                "guid": "efbba7b4-8270-4445-95d0-136bb8ac05b4"
+            },
+            "code": {
+                "type": "text",
+                "guid": "6eee6182-94a4-4820-a310-6c101a8acdba"
+            },
+            "expirationDate": {
+                "type": "datetime",
+                "guid": "6f7d215f-4a7e-4564-b285-3f4ca7b91008"
+            },
+            "maxDatabases": {
+                "type": "int",
+                "guid": "7ef8a9b3-d8e7-4654-850b-c9205f2901c2"
+            },
+            "maxTables": {
+                "type": "int",
+                "guid": "f6cd3482-e0d4-440a-9169-d568403037d9"
+            },
+            "maxRoles": {
+                "type": "int",
+                "guid": "5b918d6d-b465-4376-852a-3bf97618ec9c"
+            },
+            "maxUsers": {
+                "type": "int",
+                "guid": "7c838fc8-13c6-46a8-89fd-cf33c408ef70"
+            },
+            "maxStorage": {
+                "type": "int",
+                "guid": "3909f75f-38dc-46e4-a58b-d8516d175c29"
+            },
+            "maxDatatransfer": {
+                "type": "int",
+                "guid": "9f9af761-dfb1-4e82-be24-f865477f1a9d"
+            },
+            "complexLevel": {
+                "type": "int",
+                "guid": "1771b29a-709e-42d3-81d1-2124c2fa6813"
+            },
+            "isCustom": {
+                "type": "boolean",
+                "guid": "e52d0890-50d8-4c48-b29d-cc0b5b34a684"
+            },
+            "status": {
+                "type": "smalltext",
+                "guid": "df176422-524f-4ebb-b123-5bdff0c83bcc"
+            },
+            "payments": {
+                "type": "1n+",
+                "guid": "637d9fa1-0e66-409a-8c8a-c3fd965773b5"
+            },
+            "guid": {
+                "type": "b1e1514d-30ec-4a18-a753-0b5984c987b0",
+                "guid": "926e3d5d-f5d2-45c0-9b9f-c5dba2502b99"
+            }
+        }
+    },
+    "payments": {
+        "guid": "11423921-adbd-42ee-8f8d-f9ed7dc1607e",
+        "properties": {
+            "method": {
+                "type": "smalltext",
+                "guid": "753d4ada-edab-4ba2-a867-607569051267"
+            },
+            "meta": {
+                "type": "longtext",
+                "guid": "f5f8adad-02d7-41d5-96d3-6c5a50e0f1c1"
+            },
+            "amount": {
+                "type": "float",
+                "guid": "d275c743-656f-4e61-9a13-8afe2c642f53"
+            },
+            "status": {
+                "type": "smalltext",
+                "guid": "a025b46a-24c3-4a14-a1dd-a73df20f1883"
+            },
+            "subscriptions": {
+                "type": "1n-",
+                "guid": "96a18add-ef37-41c8-8dd2-0f4399f52f91"
+            },
+            "clients": {
+                "type": "1n-",
+                "guid": "d2127863-b21d-4502-a8b8-def2350afee5"
+            },
+            "guid": {
+                "type": "19b4b686-4b25-48bb-933f-56379de4ace6",
+                "guid": "f6468596-59a9-45ac-8539-007dbe02e5cd"
+            }
+        }
+    },
+    "clients": {
+        "guid": "d8768fec-c17d-4b4b-bd22-f5936b3ce450",
+        "properties": {
+            "firstname": {
+                "type": "text",
+                "guid": "e7e9e291-da0f-45f2-b65b-33f443712774"
+            },
+            "lastname": {
+                "type": "text",
+                "guid": "7f6b3bee-f2bb-41be-b5f7-a27424a13fcd"
+            },
+            "phone": {
+                "type": "text",
+                "guid": "84c54f08-01b0-47f4-a7f6-adf9b0dfc4e2"
+            },
+            "address1": {
+                "type": "text",
+                "guid": "d572ac29-c50b-4a25-a310-8a1dd168292b"
+            },
+            "address2": {
+                "type": "text",
+                "guid": "29d1a1b3-de67-45d4-8d81-12c5d0bb12c8"
+            },
+            "district": {
+                "type": "dictionary",
+                "guid": "b70001aa-e826-43ba-a008-9381d4479335"
+            },
+            "city": {
+                "type": "dictionary",
+                "guid": "4bc9d65b-a6b1-4ee4-a632-cda0560515aa"
+            },
+            "country": {
+                "type": "dictionary",
+                "guid": "087a57de-10d8-4d91-a117-6ef2353efb66"
+            },
+            "company": {
+                "type": "text",
+                "guid": "b52e9d2a-4f36-4123-ba4f-a076f93092f9"
+            },
+            "birthdate": {
+                "type": "datetime",
+                "guid": "e6b721e3-ee41-4e58-8a63-6fc1cd47b2b1"
+            },
+            "status": {
+                "type": "smalltext",
+                "guid": "7c342576-d8fa-4236-bc3e-4c62be579bed"
+            },
+            "tickets": {
+                "type": "1n+",
+                "guid": "6f0f0267-6046-4080-a1e2-0ce522fe55b5"
+            },
+            "payments": {
+                "type": "1n+",
+                "guid": "d44d35c0-2925-40ed-bf17-786a5e7c6d4b"
+            },
+            "tenants": {
+                "type": "1n+",
+                "guid": "7935f297-69bb-491f-95b0-85728cd6e1f7"
+            },
+            "guid": {
+                "type": "aa85f8ca-b548-48b8-a467-53a22086e58b",
+                "guid": "801f1ef8-d3a2-453c-a6bd-5ca9b517c459"
+            },
+            "users": {
+                "type": "1n-",
+                "guid": "0fa21316-ebd2-42c0-a53f-a1150638fadb"
+            }
+        }
+    },
+    "tenants": {
+        "guid": "665c8b07-2fb6-40b4-a561-fd69bcdc19d5",
+        "properties": {
+            "name": {
+                "type": "text",
+                "guid": "bd4318fd-1c4d-4eb1-985d-9bf99d9836e0"
+            },
+            "alias": {
+                "type": "text",
+                "guid": "d7c397cc-9077-4eeb-a4eb-ecc0d19ee20f"
+            },
+            "status": {
+                "type": "smalltext",
+                "guid": "423a8258-4c97-494d-a4a7-b69aaab3a36f"
+            },
+            "publickey": {
+                "type": "text",
+                "guid": "bfe06540-cc33-4468-890e-87e21be17ac9"
+            },
+            "privatekey": {
+                "type": "text",
+                "guid": "c6261f03-d9e3-43ba-9d53-12270bc4d5cf"
+            },
+            "systemkey": {
+                "type": "text",
+                "guid": "9212ea8f-9d80-4f31-b10c-a7e8ddeaed71"
+            },
+            "password": {
+                "type": "text",
+                "guid": "457b187f-8fe7-4b35-ac7d-f25a6325792f"
+            },
+            "expirationDate": {
+                "type": "datetime",
+                "guid": "de69c16b-981b-4ec1-bda9-7b393e5e3e1e"
+            },
+            "settings": {
+                "type": "longtext",
+                "guid": "86e397bc-1afe-4438-9e75-5d72febec19d"
+            },
+            "host": {
+                "type": "text",
+                "guid": "efb94d37-79f6-4a24-86c3-b56dfacb71c2"
+            },
+            "logo": {
+                "type": "image",
+                "guid": "215d10b6-e234-4778-8bb9-64a46d326a2e"
+            },
+            "dbconnection": {
+                "type": "1n-",
+                "guid": "66c6c6f5-1d09-4e0d-8dfb-7836e4602f37"
+            },
+            "clients": {
+                "type": "1n-",
+                "guid": "0b607a7c-c77d-42f2-93e3-1ac132d232b8"
+            },
+            "guid": {
+                "type": "9a8d0234-47f1-403f-ae37-28296aec97fd",
+                "guid": "aceb3184-66e1-4888-82df-b0c806c95ef7"
+            }
+        }
+    }
+}

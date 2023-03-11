@@ -1,0 +1,20 @@
+{
+    "atlas": [
+        [
+            "role",
+            "usersxroles",
+            "groups",
+            "usersxgroups",
+            "users",
+            "sessions",
+            "clientapp",
+            "logs"
+        ],
+        [
+            "parameters"
+        ],
+        [
+            "translations"
+        ]
+    ]
+}

@@ -1,0 +1,388 @@
+{
+    "system": {
+        "str": "system",
+        "system": true,
+        "guid": "system",
+        "properties": {
+            "id": {
+                "str": "id",
+                "type": "id"
+            },
+            "guid": {
+                "str": "guid",
+                "type": "guid",
+                "unique": true,
+                "required": true
+            },
+            "str": {
+                "str": "str",
+                "type": "smalltext"
+            },
+            "createdOn": {
+                "str": "createdOn",
+                "type": "datetime",
+                "required": true
+            },
+            "updatedOn": {
+                "str": "updatedOn",
+                "type": "datetime"
+            },
+            "creator": {
+                "str": "creator",
+                "type": "int"
+            },
+            "owner": {
+                "str": "owner",
+                "type": "int"
+            },
+            "updatedby": {
+                "str": "updatedby",
+                "type": "int"
+            },
+            "chunk": {
+                "str": "chunk",
+                "type": "int"
+            },
+            "rule": {
+                "str": "rule",
+                "type": "smalltext"
+            },
+            "trash": {
+                "str": "trash",
+                "type": "boolean"
+            }
+        }
+    },
+    "users": {
+        "str": "users",
+        "system": true,
+        "guid": "users",
+        "propertyKey": "username",
+        "properties": {
+            "email": {
+                "str": "email",
+                "type": "text"
+            },
+            "username": {
+                "str": "username",
+                "type": "text",
+                "required": true
+            },
+            "password": {
+                "str": "password",
+                "type": "password"
+            },
+            "usersxroles": {
+                "str": "usersxroles",
+                "type": "1n+",
+                "unique": true
+            },
+            "usersxchunks": {
+                "str": "usersxchunks",
+                "type": "1n+",
+                "unique": true
+            },
+            "lang": {
+                "str": "lang",
+                "type": "smalltext",
+                "required": true
+            },
+            "timezone": {
+                "str": "timezone",
+                "type": "smalltext",
+                "required": true
+            },
+            "status": {
+                "str": "status",
+                "type": "int"
+            },
+            "loginFailedCount": {
+                "str": "loginfailedcount",
+                "type": "loginFailedCount"
+            },
+            "lastPasswordUpdate": {
+                "str": "lastPasswordUpdate",
+                "type": "datetime"
+            }
+        }
+    },
+    "chunks": {
+        "str": "chunks",
+        "system": true,
+        "guid": "chunks",
+        "propertyKey": "alias",
+        "properties": {
+            "alias": {
+                "str": "alias",
+                "type": "text"
+            },
+            "status": {
+                "str": "status",
+                "type": "boolean"
+            }
+        }
+    },
+    "usersxchunks": {
+        "str": "usersxchunks",
+        "system": true,
+        "guid": "usersxchunks",
+        "propertyKey": "guid",
+        "properties": {
+            "chunks": {
+                "str": "chunks",
+                "type": "1n-"
+            },
+            "users": {
+                "str": "users",
+                "type": "1n-"
+            }
+        }
+    },
+    "logs": {
+        "str": "logs",
+        "system": true,
+        "guid": "logs",
+        "propertyKey": "title",
+        "properties": {
+            "content": {
+                "str": "content",
+                "type": "longtext"
+            },
+            "title": {
+                "str": "title",
+                "type": "smalltext"
+            },
+            "module": {
+                "str": "module",
+                "type": "text"
+            },
+            "users": {
+                "str": "users",
+                "type": "1n-"
+            }
+        }
+    },
+    "clientapps": {
+        "str": "clientapps",
+        "system": true,
+        "guid": "clientapps",
+        "propertyKey": "name",
+        "properties": {
+            "publickey": {
+                "str": "publickey",
+                "type": "smalltext",
+                "required": true
+            },
+            "privatekey": {
+                "str": "privatekey",
+                "type": "smalltext",
+                "required": true
+            },
+            "name": {
+                "str": "name",
+                "type": "smalltext",
+                "required": true
+            },
+            "description": {
+                "str": "description",
+                "type": "mediumtext"
+            },
+            "host": {
+                "str": "host",
+                "type": "smalltext",
+                "required": true
+            },
+            "status": {
+                "str": "status",
+                "type": "int"
+            },
+            "expirationdate": {
+                "str": "expirationdate",
+                "type": "datetime",
+                "required": true
+            },
+            "users": {
+                "str": "users",
+                "type": "1n-"
+            }
+        }
+    },
+    "sessions": {
+        "str": "sessions",
+        "system": true,
+        "guid": "sessions",
+        "propertyKey": "sessionId",
+        "properties": {
+            "status": {
+                "str": "status",
+                "type": "int"
+            },
+            "sessionId": {
+                "str": "sessionId",
+                "type": "smalltext"
+            },
+            "ipAddress": {
+                "str": "ipAddress",
+                "type": "smalltext"
+            },
+            "userAgent": {
+                "str": "userAgent",
+                "type": "smalltext"
+            },
+            "lastActivity": {
+                "str": "lastActivity",
+                "type": "timestamp"
+            },
+            "users": {
+                "str": "users",
+                "type": "1n-"
+            }
+        }
+    },
+    "roles": {
+        "str": "roles",
+        "system": true,
+        "guid": "roles",
+        "propertyKey": "name",
+        "properties": {
+            "meta": {
+                "guid": "meta",
+                "str": "meta",
+                "type": "smalltext",
+                "unique": true
+            },
+            "name": {
+                "guid": "name",
+                "str": "name",
+                "type": "smalltext"
+            },
+            "root": {
+                "guid": "root",
+                "str": "root",
+                "type": "smalltext"
+            },
+            "isUserExtension": {
+                "guid": "isUserExtension",
+                "str": "isUserExtension",
+                "type": "boolean"
+            },
+            "usersxroles": {
+                "str": "usersxroles",
+                "type": "1n+",
+                "unique": true
+            },
+            "_create": {
+                "guid": "_create",
+                "str": "_create",
+                "type": "int",
+                "min": "0",
+                "max": "10"
+            },
+            "_update": {
+                "guid": "_update",
+                "str": "_update",
+                "type": "int",
+                "min": "0",
+                "max": "10"
+            },
+            "_delete": {
+                "guid": "_delete",
+                "str": "_delete",
+                "type": "int",
+                "min": "0",
+                "max": "10"
+            },
+            "_read": {
+                "guid": "_read",
+                "str": "_read",
+                "type": "int",
+                "min": "0",
+                "max": "10",
+                "label": "Read",
+                "placeholder": "(0 - 10)"
+            },
+            "_share": {
+                "guid": "_share",
+                "str": "_share",
+                "type": "int",
+                "min": "0",
+                "max": "10"
+            },
+            "_transfer": {
+                "guid": "_transfer",
+                "str": "_transfer",
+                "type": "int",
+                "min": "0",
+                "max": "10"
+            },
+            "_clientapp": {
+                "guid": "_clientapp",
+                "str": "_clientapp",
+                "type": "int",
+                "min": "0",
+                "max": "10"
+            }
+        }
+    },
+    "usersxroles": {
+        "str": "usersxroles",
+        "system": true,
+        "guid": "usersxroles",
+        "propertyKey": "guid",
+        "properties": {
+            "roles": {
+                "str": "roles",
+                "type": "1n-",
+                "label": "Roles"
+            },
+            "users": {
+                "str": "users",
+                "type": "1n-"
+            }
+        }
+    },
+    "parameters": {
+        "str": "parameters",
+        "system": true,
+        "guid": "parameters",
+        "propertyKey": "paramKey",
+        "properties": {
+            "paramKey": {
+                "str": "paramKey",
+                "type": "smalltext"
+            },
+            "paramValue": {
+                "str": "paramValue",
+                "type": "text"
+            }
+        }
+    },
+    "translations": {
+        "str": "translations",
+        "system": true,
+        "guid": "translations",
+        "propertyKey": "value",
+        "properties": {
+            "value": {
+                "str": "value",
+                "type": "text"
+            },
+            "objectGuid": {
+                "str": "objectGuid",
+                "type": "text"
+            },
+            "recordGuid": {
+                "str": "recordGuid",
+                "type": "text"
+            },
+            "propertyGuid": {
+                "str": "propertyGuid",
+                "type": "text"
+            },
+            "localeId": {
+                "str": "locale",
+                "type": "text"
+            }
+        }
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "schema": [{
+        "tenants": {
+            "name": "text",
+            "alias": "text",
+            "status": "smalltext",
+            "publickey": "text",
+            "privatekey": "text",
+            "systemkey": "text",
+            "password": "text",
+            "expirationDate": "datetime",
+            "settings": "longtext",
+            "host": "text",
+            "logo": "image",
+            "dbconnection": {
+                "username": "text",
+                "pass": "text",
+                "host": "text",
+                "port": "text",
+                "$tenants_11": true
+            },
+            "clients": {
+                "firstname": "text",
+                "lastname": "text",
+                "phone": "text",
+                "address1": "text",
+                "address2": "text",
+                "district": "dictionary",
+                "city": "dictionary",
+                "country": "dictionary",
+                "company": "text",
+                "birthdate": "datetime",
+                "status": "smalltext",
+                "tickets": [{
+                    "code": "text",
+                    "description": "longtext",
+                    "status": "smalltext",
+                    "admins": [{
+                        "uniqueaccessid": "text"
+                    }]
+                }],
+                "payments": [{
+                    "method": "smalltext",
+                    "meta": "longtext",
+                    "amount": "float",
+                    "status": "smalltext",
+                    "subscriptions": {
+                        "name": "text",
+                        "description": "text",
+                        "code": "text",
+                        "expirationDate": "datetime",
+                        "maxDatabases": "int",
+                        "maxTables": "int",
+                        "maxRoles": "int",
+                        "maxUsers": "int",
+                        "maxStorage": "int",
+                        "maxDatatransfer": "int",
+                        "complexLevel": "int",
+                        "isCustom": "boolean",
+                        "status": "smalltext"
+                    }
+                }]
+            }
+        }
+    }],
+    "userExt": ["clients", "admins"]
+}

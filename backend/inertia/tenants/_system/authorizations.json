@@ -1,0 +1,56 @@
+{
+    "role": {
+        "create": 10,
+        "update": 10,
+        "delete": 10,
+        "read": 10,
+        "share": -1,
+        "transfer": -1,
+        "clientapp": -1
+    },
+    "users": {
+        "create": 10,
+        "update": 10,
+        "delete": 10,
+        "read": 10,
+        "share": -1,
+        "transfer": -1,
+        "clientapp": -1
+    },
+    "sessions": {
+        "create": 10,
+        "update": 10,
+        "delete": 10,
+        "read": 10,
+        "share": -1,
+        "transfer": -1,
+        "clientapp": -1
+    },
+    "clientapp": {
+        "create": 10,
+        "update": 10,
+        "delete": 10,
+        "read": 10,
+        "share": -1,
+        "transfer": -1,
+        "clientapp": -1
+    },
+    "logs": {
+        "create": 10,
+        "update": 10,
+        "delete": 10,
+        "read": 10,
+        "share": -1,
+        "transfer": -1,
+        "clientapp": -1
+    },
+    "parameters": {
+        "create": 10,
+        "update": 10,
+        "delete": 10,
+        "read": 10,
+        "share": -1,
+        "transfer": -1,
+        "clientapp": -1
+    }
+}
