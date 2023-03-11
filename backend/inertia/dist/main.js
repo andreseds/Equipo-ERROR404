@@ -1520,6 +1520,9 @@ class CrudProcess {
                     child['$' + objectName] = '1n-';
                     const item = {};
                     item[k] = child;
+                    if (data[objectName].$remove) {
+                        item[k].$remove = true;
+                    }
                     const rel = this.recursiveMatrixCreation(item);
                     if (!record[k]) {
                         record[k] = [];
@@ -2077,6 +2080,7 @@ class GraphProcess {
                     this.createDictionaries();
                     const sql = await this.generateSqlQuery();
                     if (sql.length) {
+                        console.log(sql);
                         const data = await this.makeQuery(sql);
                         const obj = new GraphResponse();
                         if (this.params.returnQuery === true) {

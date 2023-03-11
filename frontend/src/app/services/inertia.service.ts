@@ -16,12 +16,26 @@ export class InertiaService {
 
     public async login(loginDto: LoginDto) {
         try {
-            const res: DefaultResponse = await this.http.post(`${endpoint}/auth/login/${TENANT_NAME}/clients`, loginDto).toPromise() as DefaultResponse;
+            const res: DefaultResponse = await this.http.post(`${endpoint}/auth/login/${TENANT_NAME}/customers`, loginDto).toPromise() as DefaultResponse;
             if (!res.status) {
                 throw res.message;
             }
             this.token = res.object.data.accessToken;
             this.ui.messageSuccess('Welcome');
+            return true;
+        } catch (ex) {
+            this.ui.messageError(<string>ex);
+        }
+        return false;
+    }
+
+    public async register(registerDto: any) {
+        try {
+            const res: DefaultResponse = await this.http.post(`${endpoint}/auth/register/${TENANT_NAME}/customers`, registerDto).toPromise() as DefaultResponse;
+            if (!res.status) {
+                throw res.message;
+            }
+            console.log(res);
             return true;
         } catch (ex) {
             this.ui.messageError(<string>ex);

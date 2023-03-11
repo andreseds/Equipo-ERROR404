@@ -95,6 +95,12 @@ export class HomeComponent implements OnInit {
     }
 
     public async delete(item: any): Promise<void> {
+        for (const tasksxTags of (item.tasks_x_tags || [])) {
+            tasksxTags.$remove = true;
+            await this.inertia.saveElement('tasks_x_tags', tasksxTags);
+        }
+
+        item.tasks_x_tags = [];
         item.$remove = true;
         const result = await this.inertia.saveElement('tasks', item);
         if (result) {
