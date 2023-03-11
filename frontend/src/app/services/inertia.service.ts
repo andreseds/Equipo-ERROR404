@@ -16,7 +16,7 @@ export class InertiaService {
 
     public async login(loginDto: LoginDto) {
         try {
-            const res: DefaultResponse = await this.http.post(`${endpoint}/auth/login/${TENANT_NAME}/customers`, loginDto).toPromise() as DefaultResponse;
+            const res: DefaultResponse = await this.http.post(`${endpoint}/auth/login/${TENANT_NAME}/clients`, loginDto).toPromise() as DefaultResponse;
             if (!res.status) {
                 throw res.message;
             }
