@@ -3,11 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AuthenticableGuard, LoginGuard } from 'src/guards/authenticable.guard';
 import { LoginComponent } from './components/login/login.component';
-<<<<<<< HEAD
 import { RegisterComponent } from './components/register/register.component';
-=======
 import { HomeComponent } from './components/home/home.component';
->>>>>>> 63cd293919b62bf0f7298c212bda740217d0b90f
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthenticableGuard] },

@@ -2,11 +2,128 @@
     <a class="navbar-brand" href="#">
         My box
     </a>
+    <button class="btn btn--standard ms-auto" (click)="tryCreateTask()">
+        <div class="d-flex align-items-center">
+            <i class="fa fa-plus me-2 mt-1"></i>
+            Create task
+        </div>
+    </button>
 </nav>
 <div class="d-block container--standard p-3">
-    <div class="d-flex w-100">
-        <button class="btn btn--standard ms-auto">
-            Create task
-        </button>
+    <div class="d-flex w-100 mb-4">
+    </div>
+    <div class="main-container w-100" *ngIf="tasks">
+        <!-- ?-----CAJA UNO----- -->
+        <div class="container__box">
+            <div class="do-first box">
+                <div class="titulo-container">
+                    <h4>Do first</h4>
+                    <div class="titulo-container_number">{{tasks.length}}</div>
+                </div>
+                
+                <p>Urgent & important</p>
+
+                <div *ngFor="let item of tasks" class="input d-flex w-100 cursor-pointer">
+                    {{item.title}}
+                    <div class="ms-3 d-flex">
+                        <div *ngFor="let task_tag of (item.tasks_x_tags || [])" class="attr me-2">
+                            {{task_tag.tags?.title}}
+                        </div>
+                    </div>
+                    <i class="fa fa-edit ms-auto" (click)="edit(item)"></i>
+                    <i class="fa fa-trash ms-2" (click)="delete(item)"></i>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ?-----CAJA DOS----- -->
+        <div class="container__box">
+            <div class="schedule box">
+                <div class="titulo-container">
+                    <h4>Schedule</h4>
+                    <div class="titulo-container_number">{{tasks.length}}</div>
+                </div>
+                
+                <p>Less urgent, but important</p>
+
+                <div *ngFor="let item of tasks" class="input d-flex w-100 cursor-pointer">
+                    {{item.title}}
+                    <i class="fa fa-edit ms-auto"></i>
+                    <i class="fa fa-trash ms-2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-container w-100 mt-4">
+
+        <!-- ?-----CAJA TRES----- -->
+        <div class="container__box">
+            <div class="delegate box">
+                <div class="titulo-container">
+                    <h4>Delegate</h4>
+                    <div class="titulo-container_number">{{tasks.length}}</div>
+                </div>
+                
+                <p>Urgent, but less important</p>
+
+                <div *ngFor="let item of tasks" class="input d-flex w-100 cursor-pointer">
+                    {{item.title}}
+                    <i class="fa fa-edit ms-auto"></i>
+                    <i class="fa fa-trash ms-2"></i>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ?-----CAJA CUATRO----- -->
+        <div class="container__box">
+            <div class="dont-do box">
+                <div class="titulo-container">
+                    <h4>Don't do</h4>
+                    <div class="titulo-container_number">{{tasks.length}}</div>
+                </div>
+                
+                <p>Neither urgent nor important</p>
+
+                <div *ngFor="let item of tasks" class="input d-flex w-100 cursor-pointer">
+                    {{item.title}}
+                    <i class="fa fa-edit ms-auto"></i>
+                    <i class="fa fa-trash ms-2"></i>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<p-dialog header="Create task" [(visible)]="displayCreateTask" [style]="{width: '50%'}" [modal]="true" [draggable]="false">
+    <div class="d-flex flex-column" *ngIf="selectedTask">
+        <div class="d-flex flex-column w-100 pb-3">
+            <label for="" class="mb-1">Title</label>
+            <input [(ngModel)]="selectedTask.title" type="text" placeholder="Title" class="form-control form-control-md">
+        </div>
+        <div class="d-flex w-100 align-items-center">
+            <div class="d-flex flex-column w-100 pb-3 pe-3">
+                <label for="" class="mb-1">Expiration Date</label>
+                <input [(ngModel)]="selectedTask.expirated" type="date" class="form-control form-control-md">
+            </div>
+            <div class="d-flex flex-column w-100 pb-3 ps-3">
+                <label for="" class="mb-1">Priority ({{selectedTask.priority}})</label>
+                <p-slider [(ngModel)]="selectedTask.priority" [max]="10" [step]="1" class="w-100"></p-slider>
+            </div>
+        </div>
+        <div class="d-flex flex-column w-100 pb-3">
+            <label for="" class="mb-1">Description</label>
+            <textarea class="w-100" [rows]="6" pInputTextarea></textarea>
+        </div>
+        <div class="d-flex flex-column w-100 pb-3">
+            <label for="" class="mb-1">Attributes</label>
+            <p-multiSelect [appendTo]="'body'" [options]="tags$ | async" [(ngModel)]="selectedTask.tags" defaultLabel="Select attributes" optionValue="$guid" optionLabel="title"></p-multiSelect>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button icon="pi pi-check mx-2" (click)="cancelCreateTask()" class="btn btn--null">Cancel</button>
+        <button icon="pi pi-check mx-2" (click)="saveTask()" class="btn btn--standard">Save</button>
+    </ng-template>
+</p-dialog>

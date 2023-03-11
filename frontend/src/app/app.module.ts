@@ -22,6 +22,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
+import {SliderModule} from 'primeng/slider';
 
 @NgModule({
     declarations: [
@@ -47,7 +48,9 @@ import { MessageService } from 'primeng/api';
         MenubarModule,
         ToastModule,
         CheckboxModule,
-        DialogModule
+        DialogModule,
+        SliderModule,
+        InputTextareaModule
     ],
     providers: [MessageService],
     bootstrap: [AppComponent]

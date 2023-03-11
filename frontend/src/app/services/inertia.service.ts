@@ -12,7 +12,7 @@ const TENANT_NAME = 'a6a5787d-7fac-4c57-8e04-686dc8a57408';
 export class InertiaService {
     private _token: string = '';
 
-    constructor(private http: HttpClient, private ui: UiService) { }
+    constructor(private http: HttpClient, public ui: UiService) { }
 
     public async login(loginDto: LoginDto) {
         try {
