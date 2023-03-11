@@ -18,12 +18,12 @@
             <div class="do-first box">
                 <div class="titulo-container">
                     <h4>Do first</h4>
-                    <div class="titulo-container_number">{{tasks.length}}</div>
+                    <div class="titulo-container_number">{{group1.length}}</div>
                 </div>
                 
                 <p>Urgent & important</p>
 
-                <div *ngFor="let item of tasks" class="input d-flex w-100 cursor-pointer">
+                <div *ngFor="let item of group1" class="input d-flex w-100 cursor-pointer">
                     {{item.title}}
                     <div class="ms-3 d-flex">
                         <div *ngFor="let task_tag of (item.tasks_x_tags || [])" class="attr me-2">
@@ -42,15 +42,20 @@
             <div class="schedule box">
                 <div class="titulo-container">
                     <h4>Schedule</h4>
-                    <div class="titulo-container_number">{{tasks.length}}</div>
+                    <div class="titulo-container_number">{{group2.length}}</div>
                 </div>
                 
                 <p>Less urgent, but important</p>
 
-                <div *ngFor="let item of tasks" class="input d-flex w-100 cursor-pointer">
+                <div *ngFor="let item of group2" class="input d-flex w-100 cursor-pointer">
                     {{item.title}}
-                    <i class="fa fa-edit ms-auto"></i>
-                    <i class="fa fa-trash ms-2"></i>
+                    <div class="ms-3 d-flex">
+                        <div *ngFor="let task_tag of (item.tasks_x_tags || [])" class="attr me-2">
+                            {{task_tag.tags?.title}}
+                        </div>
+                    </div>
+                    <i class="fa fa-edit ms-auto" (click)="edit(item)"></i>
+                    <i class="fa fa-trash ms-2" (click)="delete(item)"></i>
                 </div>
             </div>
         </div>
@@ -63,15 +68,20 @@
             <div class="delegate box">
                 <div class="titulo-container">
                     <h4>Delegate</h4>
-                    <div class="titulo-container_number">{{tasks.length}}</div>
+                    <div class="titulo-container_number">{{group3.length}}</div>
                 </div>
                 
                 <p>Urgent, but less important</p>
 
-                <div *ngFor="let item of tasks" class="input d-flex w-100 cursor-pointer">
+                <div *ngFor="let item of group3" class="input d-flex w-100 cursor-pointer">
                     {{item.title}}
-                    <i class="fa fa-edit ms-auto"></i>
-                    <i class="fa fa-trash ms-2"></i>
+                    <div class="ms-3 d-flex">
+                        <div *ngFor="let task_tag of (item.tasks_x_tags || [])" class="attr me-2">
+                            {{task_tag.tags?.title}}
+                        </div>
+                    </div>
+                    <i class="fa fa-edit ms-auto" (click)="edit(item)"></i>
+                    <i class="fa fa-trash ms-2" (click)="delete(item)"></i>
                 </div>
             </div>
         </div>
@@ -82,15 +92,20 @@
             <div class="dont-do box">
                 <div class="titulo-container">
                     <h4>Don't do</h4>
-                    <div class="titulo-container_number">{{tasks.length}}</div>
+                    <div class="titulo-container_number">{{group4.length}}</div>
                 </div>
                 
                 <p>Neither urgent nor important</p>
 
-                <div *ngFor="let item of tasks" class="input d-flex w-100 cursor-pointer">
+                <div *ngFor="let item of group4" class="input d-flex w-100 cursor-pointer">
                     {{item.title}}
-                    <i class="fa fa-edit ms-auto"></i>
-                    <i class="fa fa-trash ms-2"></i>
+                    <div class="ms-3 d-flex">
+                        <div *ngFor="let task_tag of (item.tasks_x_tags || [])" class="attr me-2">
+                            {{task_tag.tags?.title}}
+                        </div>
+                    </div>
+                    <i class="fa fa-edit ms-auto" (click)="edit(item)"></i>
+                    <i class="fa fa-trash ms-2" (click)="delete(item)"></i>
                 </div>
             </div>
         </div>
@@ -106,16 +121,16 @@
         <div class="d-flex w-100 align-items-center">
             <div class="d-flex flex-column w-100 pb-3 pe-3">
                 <label for="" class="mb-1">Expiration Date</label>
-                <input [(ngModel)]="selectedTask.expirated" type="date" class="form-control form-control-md">
+                <input [(ngModel)]="selectedTask.expiration" type="date" class="form-control form-control-md">
             </div>
             <div class="d-flex flex-column w-100 pb-3 ps-3">
-                <label for="" class="mb-1">Priority ({{selectedTask.priority}})</label>
-                <p-slider [(ngModel)]="selectedTask.priority" [max]="10" [step]="1" class="w-100"></p-slider>
+                <label for="" class="mb-1">Priority ({{selectedTask.meta || '0'}})</label>
+                <p-slider [(ngModel)]="selectedTask.meta" [max]="10" [step]="1" class="w-100"></p-slider>
             </div>
         </div>
         <div class="d-flex flex-column w-100 pb-3">
             <label for="" class="mb-1">Description</label>
-            <textarea class="w-100" [rows]="6" pInputTextarea></textarea>
+            <textarea [(ngModel)]="selectedTask.description" class="w-100" [rows]="6" pInputTextarea></textarea>
         </div>
         <div class="d-flex flex-column w-100 pb-3">
             <label for="" class="mb-1">Attributes</label>

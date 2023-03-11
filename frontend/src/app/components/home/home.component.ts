@@ -13,6 +13,10 @@ export class HomeComponent implements OnInit {
     public selectedTask: any = null;
     public tags: any[] = [];
     public tasks: any[] = [];
+    public group1: any[] = [];
+    public group2: any[] = [];
+    public group3: any[] = [];
+    public group4: any[] = [];
     public tags$: BehaviorSubject<any> = new BehaviorSubject<any>([]);
 
     constructor(private inertia: InertiaService) { }
@@ -32,19 +36,51 @@ export class HomeComponent implements OnInit {
             title: '',
             description: '',
             expiration: '',
+            meta: '',
             tasks_x_tags: [{
                 tags: {
                     title: ''
                 }
             }]
         }))?.map(x => x.tasks);
+
+        for (const task of this.tasks) {
+            task.$points = (new Date(task.expiration)).getTime() / parseInt(task.meta || '1');
+            task.expiration = task.expiration ? task.expiration.split('T')[0] : null;
+        }
+
+        this.tasks.sort((a, b) => {
+            return a.$points > b.$points ? 1 : -1;
+        });
+
+        this.group1 = [];
+        this.group2 = [];
+        this.group3 = [];
+        this.group4 = [];
+
+        const chunkSize = 4;
+        for (let i = 0; i < this.tasks.length; i += chunkSize) {
+            const chunk = this.tasks.slice(i, i + chunkSize);
+
+            if (i === 0) {
+                this.group1.push(...chunk);
+            } else if (i === chunkSize) {
+                this.group2.push(...chunk);
+            } else if (i === chunkSize + chunkSize) {
+                this.group3.push(...chunk);
+            } else {
+                this.group4.push(...chunk);
+            }
+        }
+        console.log(this.tasks)
     }
 
     public tryCreateTask(): void {
         this.displayCreateTask = true;
         this.selectedTask = {
             title: '',
-            priority: 5,
+            description: '',
+            meta: 5,
             expiration: null,
             tags: []
         }
@@ -57,13 +93,19 @@ export class HomeComponent implements OnInit {
     public async saveTask(): Promise<void> {
         if (!this.selectedTask.tasks_x_tags) {
             this.selectedTask.tasks_x_tags = [];
+        } else {
+            this.selectedTask.tasks_x_tags = this.selectedTask.tasks_x_tags.filter((x: any) => x.$guid);
         }
 
-        for (const tasksxTags of this.selectedTask.tasks_x_tags) {
-            tasksxTags.$remove = true;
+        this.selectedTask.meta = `${this.selectedTask.meta || '1'}` 
+
+        console.log(this.selectedTask.tasks_x_tags);
+
+        for (let i = 0; i < this.selectedTask.tasks_x_tags.length; i++) {
+            this.selectedTask.tasks_x_tags[i].$remove = true;
         }
 
-        for (const $guid of this.selectedTask.tags) {
+        for (const $guid of (this.selectedTask.tags || [])) {
             const tags = this.tags.find(x => x.$guid === $guid);
             if (tags) {
                 this.selectedTask.tasks_x_tags.push({
