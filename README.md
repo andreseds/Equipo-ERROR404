@@ -1,5 +1,18 @@
 # Equipo-ERROR404
 
+Projecto Eisenhower To Do List.
+
+La página es para crear tareas donde según los criterios de importancia o urgencia, la pagina las catalogue según la caja de eisenhower
+Al mismo tiempo, al crear la tarea definir las habilidades que se necesitan para llevarlas a cabo
+
+Según el eneagrama y las habilidades de cada persona, se te recomienda a quien delegar cada tarea.
+
+
+
+//
+
+
+
 roco m
 booking@rocomedina.com
 https://www.linkedin.com/in/rocomedina/
