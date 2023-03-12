@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-03-2023 a las 07:32:16
+-- Tiempo de generación: 12-03-2023 a las 06:21:28
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -122,14 +122,14 @@ CREATE TABLE `private_parameters` (
 --
 
 INSERT INTO `private_parameters` (`id`, `guid`, `str`, `createdOn`, `updatedOn`, `creator`, `owner`, `updatedby`, `chunk`, `rule`, `trash`, `paramKey`, `paramValue`) VALUES
-(1, '', NULL, '2023-03-11 04:57:40', NULL, NULL, NULL, NULL, NULL, 'readonly', NULL, 'systemKey', '109a6439-c158-4b63-9ddc-f8657dccd40e'),
-(2, 'c7f19d5c-c3fe-4420-be0b-712a53b6d879', '', '2023-03-11 04:57:40', NULL, 11, 11, NULL, NULL, NULL, 0, 'allowMultiSession', 'false'),
-(3, '2b1e5808-b833-468c-bfdd-5dadb33cb867', '', '2023-03-11 04:57:40', NULL, 11, 11, NULL, NULL, NULL, 0, 'allowGroupSegmentation', 'true'),
-(4, '504f9b0c-ff7f-46c0-b95a-3b1dccb68a51', '', '2023-03-11 04:57:40', NULL, 11, 11, NULL, NULL, NULL, 0, 'allowUserRegistration', 'true'),
-(5, 'cc4e7ec3-66fb-476a-ba0b-f4ef4725d3f0', '', '2023-03-11 04:57:40', NULL, 11, 11, NULL, NULL, NULL, 0, 'emailConfirmRegistration', 'true'),
-(6, '4527c255-bf6a-444c-a24a-86e3f7e7baf0', '', '2023-03-11 04:57:40', NULL, 11, 11, NULL, NULL, NULL, 0, 'maxLoginFailedCount', '3'),
-(7, '092a3e36-1378-42aa-8b8a-3ed30b55b158', '', '2023-03-11 04:57:40', NULL, 11, 11, NULL, NULL, NULL, 0, 'sessionDuration', '1200000'),
-(8, '87fb9f0b-c00a-4b64-b569-91ab3e5b890a', '', '2023-03-11 04:57:40', NULL, 11, 11, NULL, NULL, NULL, 0, 'authorizationLevel', '10');
+(1, '', NULL, '2023-03-12 04:23:25', NULL, NULL, NULL, NULL, NULL, 'readonly', NULL, 'systemKey', '1b2308e9-4a13-478d-98b8-512eedd05a77'),
+(2, '2e4a1ee9-d61e-4d7d-b81f-b194a9dfcff1', '', '2023-03-12 04:23:25', NULL, 11, 11, NULL, NULL, NULL, 0, 'allowMultiSession', 'false'),
+(3, 'c1181238-aada-4a38-8de9-0939ce560771', '', '2023-03-12 04:23:25', NULL, 11, 11, NULL, NULL, NULL, 0, 'allowGroupSegmentation', 'true'),
+(4, '5ce3c924-bcc8-4f9e-962d-65ad57c37399', '', '2023-03-12 04:23:25', NULL, 11, 11, NULL, NULL, NULL, 0, 'allowUserRegistration', 'true'),
+(5, '646e9a3d-75e4-4171-8461-4a7ddc381530', '', '2023-03-12 04:23:25', NULL, 11, 11, NULL, NULL, NULL, 0, 'emailConfirmRegistration', 'true'),
+(6, 'ac2c3a8c-773d-4c36-9087-bbe9b72d02dc', '', '2023-03-12 04:23:25', NULL, 11, 11, NULL, NULL, NULL, 0, 'maxLoginFailedCount', '3'),
+(7, '246bebb3-1381-4225-b084-59e071a5c43f', '', '2023-03-12 04:23:25', NULL, 11, 11, NULL, NULL, NULL, 0, 'sessionDuration', '1200000'),
+(8, '1b0b6c25-5d06-4d59-89fd-77770dce2823', '', '2023-03-12 04:23:25', NULL, 11, 11, NULL, NULL, NULL, 0, 'authorizationLevel', '10');
 
 -- --------------------------------------------------------
 
@@ -167,8 +167,8 @@ CREATE TABLE `private_roles` (
 --
 
 INSERT INTO `private_roles` (`id`, `guid`, `str`, `createdOn`, `updatedOn`, `creator`, `owner`, `updatedby`, `chunk`, `rule`, `trash`, `meta`, `name`, `root`, `isUserExtension`, `_create`, `_update`, `_delete`, `_read`, `_share`, `_transfer`, `_clientapp`) VALUES
-(1, '53aa15e7-653c-4bd7-b211-f7e0cf1bacc9', '', '2023-03-11 04:57:40', NULL, 11, 11, NULL, NULL, NULL, 0, 'customers', 'customers', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, '2ae5f309-5e88-4c40-ad7b-471cc3d27611', '', '2023-03-11 04:57:40', NULL, 11, 11, NULL, NULL, NULL, 0, 'system', 'System', NULL, 1, 10, 10, 10, 10, 10, 10, 10);
+(1, 'e1d5bb25-e0c4-4cd0-a588-60704ef1de34', '', '2023-03-12 04:23:25', NULL, 11, 11, NULL, NULL, NULL, 0, 'customers', 'customers', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, '8eff9cba-6489-4401-972e-fd5dc1d627b4', '', '2023-03-12 04:23:25', NULL, 11, 11, NULL, NULL, NULL, 0, 'system', 'System', NULL, 1, 10, 10, 10, 10, 10, 10, 10);
 
 -- --------------------------------------------------------
 
@@ -244,7 +244,7 @@ CREATE TABLE `private_usersxroles` (
 --
 
 INSERT INTO `private_usersxroles` (`id`, `guid`, `str`, `createdOn`, `updatedOn`, `creator`, `owner`, `updatedby`, `chunk`, `rule`, `trash`, `roles_id`, `users_id`) VALUES
-(1, '0c9efc05-e360-4060-9b25-37031f241c1c', '', '2023-03-11 04:57:40', NULL, 11, 11, NULL, NULL, NULL, 0, 2, 1);
+(1, 'c5ba9b9b-80d1-44b8-a9c2-8a184abc3a6d', '', '2023-03-12 04:23:25', NULL, 11, 11, NULL, NULL, NULL, 0, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -270,7 +270,7 @@ CREATE TABLE `public_customers` (
   `phone2` varchar(512) DEFAULT NULL,
   `address` varchar(512) DEFAULT NULL,
   `birthdate` timestamp NULL DEFAULT NULL,
-  `dni` varchar(512) DEFAULT NULL,
+  `meta` varchar(512) DEFAULT NULL,
   `status` varchar(512) DEFAULT NULL,
   `users_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -346,7 +346,9 @@ CREATE TABLE `public_tags` (
 --
 
 INSERT INTO `public_tags` (`id`, `guid`, `str`, `createdOn`, `updatedOn`, `creator`, `owner`, `updatedby`, `chunk`, `rule`, `trash`, `title`, `description`) VALUES
-(1, 'lider', NULL, '2023-03-11 04:58:39', '2023-03-11 06:28:23', NULL, NULL, 1, NULL, NULL, NULL, 'Lider', 'lider');
+(1, 'Lider', NULL, '2023-03-12 04:47:56', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Lider', 'Lider'),
+(2, 'Ayudante', NULL, '2023-03-12 04:48:03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ayudante', 'Ayudante'),
+(3, 'Individualista', NULL, '2023-03-12 04:48:11', '2023-03-12 04:48:56', NULL, NULL, 1, NULL, NULL, NULL, 'Individualista', 'Individualista');
 
 -- --------------------------------------------------------
 
@@ -380,10 +382,7 @@ CREATE TABLE `public_tasks` (
 --
 
 INSERT INTO `public_tasks` (`id`, `guid`, `str`, `createdOn`, `updatedOn`, `creator`, `owner`, `updatedby`, `chunk`, `rule`, `trash`, `expiration`, `code`, `title`, `description`, `meta`, `note`, `customers_id`) VALUES
-(9, 'b2a8b80c-ddcc-4af5-8cf2-76a858a7fa0a', '', '2023-03-11 05:53:41', '2023-03-11 06:27:25', 1, 1, 1, NULL, NULL, 0, NULL, NULL, 'Realizar landing page', '', NULL, NULL, NULL),
-(10, 'e9f4cfb8-638f-4940-b9e6-15789bc72d9f', '', '2023-03-11 05:55:53', '2023-03-11 06:27:35', 1, 1, 1, NULL, NULL, 0, NULL, NULL, 'Reunion con marketing', '', NULL, NULL, NULL),
-(11, 'e0d8138f-3c27-404f-9910-2c7845dc9a90', '', '2023-03-11 05:56:13', '2023-03-11 06:27:48', 1, 1, 1, NULL, NULL, 0, NULL, NULL, 'Evaluar nuevos diseños', '', NULL, NULL, NULL),
-(12, '3a2aed9e-76dd-4e92-98e1-13eac1dafcc2', '', '2023-03-11 06:07:02', '2023-03-11 06:28:23', 1, 1, 1, NULL, NULL, 0, NULL, NULL, 'Ecommerce - Fix Branding Location effects', '', NULL, NULL, NULL);
+(1, 'cc42038a-41d2-4815-b2a5-696a07a8a7f9', '', '2023-03-12 04:48:56', NULL, 1, 1, NULL, NULL, NULL, 0, '2023-03-12 04:00:00', NULL, 'test', '', '5', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -412,10 +411,7 @@ CREATE TABLE `public_tasks_x_tags` (
 --
 
 INSERT INTO `public_tasks_x_tags` (`id`, `guid`, `str`, `createdOn`, `updatedOn`, `creator`, `owner`, `updatedby`, `chunk`, `rule`, `trash`, `tags_id`, `tasks_id`) VALUES
-(31, '653df3f9-bd36-4c0b-acae-7465befa3b12', '', '2023-03-11 06:27:25', NULL, 1, 1, NULL, NULL, NULL, 0, 1, 9),
-(32, '2e4807a8-193d-4237-9f5e-77571f33a45c', '', '2023-03-11 06:27:35', NULL, 1, 1, NULL, NULL, NULL, 0, 1, 10),
-(33, 'f498cb13-0f42-4eb9-a3f9-cf931923b208', '', '2023-03-11 06:27:48', NULL, 1, 1, NULL, NULL, NULL, 0, 1, 11),
-(34, '995eb0e2-d26b-4d07-b2ca-0d75d143833a', '', '2023-03-11 06:28:23', NULL, 1, 1, NULL, NULL, NULL, 0, 1, 12);
+(1, 'd9573f33-1835-4bd4-8603-154fcf858831', '', '2023-03-12 04:48:56', NULL, 1, 1, NULL, NULL, NULL, 0, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -474,7 +470,7 @@ CREATE TABLE `public_users` (
 --
 
 INSERT INTO `public_users` (`id`, `guid`, `str`, `createdOn`, `updatedOn`, `creator`, `owner`, `updatedby`, `chunk`, `rule`, `trash`, `password`, `role_id`, `status`, `email`, `customers_id`, `username`, `lang`, `timezone`, `loginFailedCount`, `lastPasswordUpdate`) VALUES
-(1, '201f9838-bf51-4d23-b4b8-ffebadf87061', '', '2023-03-11 04:57:40', NULL, 11, 11, NULL, NULL, NULL, 0, '$2b$10$VUSY1qJ.gnfjS09hrKUeVuZViHgvrvG5LUdNTZdv6rege628rbBK2', NULL, NULL, NULL, NULL, 'system', NULL, NULL, NULL, NULL);
+(1, '8b358e69-2285-47e0-ae54-76f3e7bb514f', '', '2023-03-12 04:23:25', NULL, 11, 11, NULL, NULL, NULL, 0, '$2b$10$TdCTFftV7TgPTvmSC9XgQ.0XwT8hbEtKnn5pa9sbz9SM4eG67JOxK', NULL, NULL, NULL, NULL, 'system', NULL, NULL, NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -658,19 +654,19 @@ ALTER TABLE `public_status`
 -- AUTO_INCREMENT de la tabla `public_tags`
 --
 ALTER TABLE `public_tags`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `public_tasks`
 --
 ALTER TABLE `public_tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `public_tasks_x_tags`
 --
 ALTER TABLE `public_tasks_x_tags`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `public_task_x_status`
