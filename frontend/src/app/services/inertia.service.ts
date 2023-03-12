@@ -16,12 +16,27 @@ export class InertiaService {
 
     public async login(loginDto: LoginDto) {
         try {
-            const res: DefaultResponse = await this.http.post(`${endpoint}/auth/login/${TENANT_NAME}/customers`, loginDto).toPromise() as DefaultResponse;
+            const res: DefaultResponse = await this.http.post(`${endpoint}/auth/login/${TENANT_NAME}/clients`, loginDto).toPromise() as DefaultResponse;
             if (!res.status) {
                 throw res.message;
             }
             this.token = res.object.data.accessToken;
             this.ui.messageSuccess('Welcome');
+            return true;
+        } catch (ex) {
+            this.ui.messageError(<string>ex);
+        }
+        return false;
+    }
+
+    public async logout() {
+        try {
+            const res: DefaultResponse = await this.http.post(`${endpoint}/auth/logout/`, {}, { headers: this.headers }).toPromise() as DefaultResponse;
+            if (!res.status) {
+                throw res.message;
+            }
+            this.ui.messageSuccess('Good bye');
+            this.token = null;
             return true;
         } catch (ex) {
             this.ui.messageError(<string>ex);
@@ -89,7 +104,11 @@ export class InertiaService {
     
     private set token(value: string | null) {
         this._token = value ?? '';
-        localStorage.setItem('accessToken', <string>value);
+        if (value) {
+            localStorage.setItem('accessToken', <string>value);
+        } else {
+            localStorage.removeItem('accessToken');
+        }
     }
 
     private get token(): string | null {

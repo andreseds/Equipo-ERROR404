@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InertiaService } from '../../services/inertia.service';
 import { BehaviorSubject } from 'rxjs';
 import { clone } from 'src/app/services';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit {
     public group4: any[] = [];
     public tags$: BehaviorSubject<any> = new BehaviorSubject<any>([]);
 
-    constructor(private inertia: InertiaService) { }
+    constructor(private inertia: InertiaService, private router: Router) { }
 
     async ngOnInit(): Promise<void> {
         this.search();
@@ -151,5 +152,10 @@ export class HomeComponent implements OnInit {
 
             this.search();
         } 
+    }
+
+    public async logout(): Promise<void> {
+        await this.inertia.logout();
+        this.router.navigate(['login']);
     }
 }
