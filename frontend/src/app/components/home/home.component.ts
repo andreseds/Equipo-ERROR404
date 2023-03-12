@@ -24,9 +24,9 @@ export class HomeComponent implements OnInit {
     public customer: any = null;
     public skip: boolean = false;
     public doingTest: number = 0;
-    public preguntas1: any[] = ['Do you trust most people?','Do you tend to be a people-pleaser?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?'];
-    public preguntas2: any[] = ['Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?'];
-    public preguntas3: any[] = ['Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?'];
+    public preguntas1: any[] = ['Tiendes a confiar en la mayoria de la gente?','Complacer a los demás es importante para ti?','Los logros y el reconocimiento significan mucho para ti?','Vivir el momento ahora es mas importante que planificar lo que haras mañana?','Te describen a menudo como una persona intensa o intimidante?','Evitar una confrontacion es importante para ti?','El exito no es tan importante para ti?','Ser algo único o diferente para los demás es importante para ti?','Tener tu entorno bajo control es importante para ti?'];
+    public preguntas2: any[] = ['Evitar cometer errores es importante para ti?','Ayudar a los demás te inspira a trabajar?','Tener éxito y objetivos hoy es importante para ti?','Necesitas expresar lo que te diferencia a los demás?','Comprender y analizar tus emociones es importante para ti?','Eres fuerte e independiente hoy?','Trabajas para demostrar que eres leal y comprometido con los demás?','Te gusta pensar con optimismo y positividad?','DEl poder y el autocontrol es importante para ti?'];
+    public preguntas3: any[] = ['Te asocian con paz y calma frecuentemente?','Confías en una sola fuente de información si es verdadera?','Trabajas para que tus actos sean valorados por los demás?','Trabajas para ser productivo?','Hiciste algo creativo y original hoy?','Ser introspectivo y reflexivo es necesario para ti?','Eres autosuficiente ahora?','Trabajas para demostrar afecto a los demás?','Mañana será un buen día?'];
     public eneagrama: any[] = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
 
     constructor(private inertia: InertiaService, private router: Router) { }
@@ -204,15 +204,15 @@ export class HomeComponent implements OnInit {
     }
 
     async saveTest() {
-        const box = [[0,0,0,0,1,0,1,0,1,1,1,0,0,0,1,1,0,0,1,1,0,1,0,1,1,1,0,'Reformer'],
-        [0,0,1,0,1,0,0,0,1,1,1,1,0,0,1,0,0,0,0,1,0,1,0,0,1,0,0,'Helper'],
-        [0,0,1,0,1,0,0,0,1,1,0,1,0,0,1,0,0,1,0,1,0,1,0,0,1,0,0,'Achiever'],
-        [0,0,1,0,1,0,0,1,1,1,0,1,1,0,1,0,0,1,0,1,1,1,1,0,1,0,0,'Individualist'],
-        [0,0,0,0,1,0,1,1,1,1,0,0,1,1,1,0,0,0,0,1,0,1,1,1,1,0,0,'Investigator'],
-        [0,0,1,0,1,0,1,0,1,1,1,1,0,0,1,1,0,0,1,1,1,1,0,0,1,1,0,'Loyalist'],
-        [0,0,1,0,1,0,0,0,1,1,1,1,0,0,1,1,0,1,0,1,1,1,0,0,1,1,0,'Enthusiast'],
-        [0,0,1,0,1,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0,'Challenger'],
-        [1,1,0,1,0,1,1,0,0,0,1,0,0,0,0,1,1,0,1,0,0,0,0,0,0,1,1,'Peacemaker']];
+        const box = [[0,0,0,0,1,0,1,0,1,1,1,0,0,0,1,1,0,0,1,1,0,1,0,1,1,1,0,'Reformador'],
+        [0,0,1,0,1,0,0,0,1,1,1,1,0,0,1,0,0,0,0,1,0,1,0,0,1,0,0,'Ayudante'],
+        [0,0,1,0,1,0,0,0,1,1,0,1,0,0,1,0,0,1,0,1,0,1,0,0,1,0,0,'Triunfador'],
+        [0,0,1,0,1,0,0,1,1,1,0,1,1,0,1,0,0,1,0,1,1,1,1,0,1,0,0,'Individualista'],
+        [0,0,0,0,1,0,1,1,1,1,0,0,1,1,1,0,0,0,0,1,0,1,1,1,1,0,0,'Investigador'],
+        [0,0,1,0,1,0,1,0,1,1,1,1,0,0,1,1,0,0,1,1,1,1,0,0,1,1,0,'Leal'],
+        [0,0,1,0,1,0,0,0,1,1,1,1,0,0,1,1,0,1,0,1,1,1,0,0,1,1,0,'Entusiasta'],
+        [0,0,1,0,1,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0,'Desafiante'],
+        [1,1,0,1,0,1,1,0,0,0,1,0,0,0,0,1,1,0,1,0,0,0,0,0,0,1,1,'Pacificador']];
 
         for (let m = 0; m < box.length; m++) {
             for (let n = 0; n < this.eneagrama.length; n++) {
