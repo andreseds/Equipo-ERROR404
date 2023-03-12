@@ -1,233 +1,254 @@
-<div class="d-block w-100" *ngIf="customer?.meta || skip">
-    <nav class="navbar navbar-light bg-light px-md-4">
-        <a class="navbar-brand" href="#">
-            Team box
-        </a>
-        <button class="btn btn--standard ms-auto" (click)="tryCreateTask()">
-            <div class="d-flex align-items-center">
-                <i class="fa fa-plus me-2 mt-1"></i>
-                Create task
+<div class="d-block w-100" *ngIf="ready">
+    <div class="d-block w-100" *ngIf="customer?.customers_x_tags?.length || skip">
+        <nav class="navbar navbar-light bg-light px-md-4">
+            <a class="navbar-brand" href="#">
+                Team box
+            </a>
+            <span *ngIf="customer?.meta" style="color: #6a6a6a;">
+                — Your role: {{customer.meta}}
+            </span>
+            <button class="btn btn--standard ms-auto" (click)="tryCreateTask()">
+                <div class="d-flex align-items-center">
+                    <i class="fa fa-plus me-2 mt-1"></i>
+                    Create task
+                </div>
+            </button>
+            <button class="btn btn--standard ms-3" (click)="logout()">
+                <div class="d-flex align-items-center">
+                    <i class="fa fa-sign-out-alt me-2 mt-1"></i>
+                    Logout
+                </div>
+            </button>
+        </nav>
+        <div class="d-block container--standard p-3">
+            <div class="d-flex w-100 mb-4">
             </div>
-        </button>
-        <button class="btn btn--standard ms-3" (click)="logout()">
-            <div class="d-flex align-items-center">
-                <i class="fa fa-sign-out-alt me-2 mt-1"></i>
-                Logout
-            </div>
-        </button>
-    </nav>
-    <div class="d-block container--standard p-3">
-        <div class="d-flex w-100 mb-4">
-        </div>
-        <div class="main-container w-100" *ngIf="tasks">
-            <!-- ?-----CAJA UNO----- -->
-            <div class="container__box">
-                <div class="do-first box">
-                    <div class="titulo-container">
-                        <h4>Do first</h4>
-                        <div class="titulo-container_number">{{group1.length}}</div>
-                    </div>
-                    
-                    <p>Urgent & important</p>
-    
-                    <div *ngFor="let item of group1" class="input d-flex w-100 cursor-pointer">
-                        {{item.title}}
-                        <div class="ms-3 d-flex">
-                            <div *ngFor="let task_tag of (item.tasks_x_tags || [])" class="attr me-2">
-                                {{task_tag.tags?.title}}
-                            </div>
+            <div class="main-container w-100" *ngIf="tasks">
+                <!-- ?-----CAJA UNO----- -->
+                <div class="container__box">
+                    <div class="do-first box">
+                        <div class="titulo-container">
+                            <h4>Do first</h4>
+                            <div class="titulo-container_number">{{group1.length}}</div>
                         </div>
-                        <i class="fa fa-edit ms-auto" (click)="edit(item)"></i>
-                        <i class="fa fa-trash ms-2" (click)="delete(item)"></i>
+                        
+                        <p>Urgent & important</p>
+        
+                        <div *ngFor="let item of group1" class="input d-flex w-100 cursor-pointer align-items-center">
+                            {{item.title}}
+                            <div class="ms-3 d-flex">
+                                <div *ngFor="let task_tag of (item.tasks_x_tags || [])" class="attr me-2">
+                                    {{task_tag.tags?.title}}
+                                </div>
+                            </div>
+                            <button class="btn btn--null ms-auto" (click)="edit(item)">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn btn--null ms-2" (click)="delete(item)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        
+        
+                <!-- ?-----CAJA DOS----- -->
+                <div class="container__box">
+                    <div class="schedule box">
+                        <div class="titulo-container">
+                            <h4>Schedule</h4>
+                            <div class="titulo-container_number">{{group2.length}}</div>
+                        </div>
+                        
+                        <p>Less urgent, but important</p>
+        
+                        <div *ngFor="let item of group2" class="input d-flex w-100 cursor-pointer align-items-center">
+                            {{item.title}}
+                            <div class="ms-3 d-flex">
+                                <div *ngFor="let task_tag of (item.tasks_x_tags || [])" class="attr me-2">
+                                    {{task_tag.tags?.title}}
+                                </div>
+                            </div>
+                            <button class="btn btn--null ms-auto" (click)="edit(item)">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn btn--null ms-2" (click)="delete(item)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-    
-    
-            <!-- ?-----CAJA DOS----- -->
-            <div class="container__box">
-                <div class="schedule box">
-                    <div class="titulo-container">
-                        <h4>Schedule</h4>
-                        <div class="titulo-container_number">{{group2.length}}</div>
-                    </div>
-                    
-                    <p>Less urgent, but important</p>
-    
-                    <div *ngFor="let item of group2" class="input d-flex w-100 cursor-pointer">
-                        {{item.title}}
-                        <div class="ms-3 d-flex">
-                            <div *ngFor="let task_tag of (item.tasks_x_tags || [])" class="attr me-2">
-                                {{task_tag.tags?.title}}
-                            </div>
+            
+            <div class="main-container w-100 mt-4">
+        
+                <!-- ?-----CAJA TRES----- -->
+                <div class="container__box">
+                    <div class="delegate box">
+                        <div class="titulo-container">
+                            <h4>Delegate</h4>
+                            <div class="titulo-container_number">{{group3.length}}</div>
                         </div>
-                        <i class="fa fa-edit ms-auto" (click)="edit(item)"></i>
-                        <i class="fa fa-trash ms-2" (click)="delete(item)"></i>
+                        
+                        <p>Urgent, but less important</p>
+        
+                        <div *ngFor="let item of group3" class="input d-flex w-100 cursor-pointer align-items-center">
+                            {{item.title}}
+                            <div class="ms-3 d-flex">
+                                <div *ngFor="let task_tag of (item.tasks_x_tags || [])" class="attr me-2">
+                                    {{task_tag.tags?.title}}
+                                </div>
+                            </div>
+                            <button class="btn btn--null ms-auto" (click)="edit(item)">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn btn--null ms-2" (click)="delete(item)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        
+        
+                <!-- ?-----CAJA CUATRO----- -->
+                <div class="container__box">
+                    <div class="dont-do box">
+                        <div class="titulo-container">
+                            <h4>Don't do</h4>
+                            <div class="titulo-container_number">{{group4.length}}</div>
+                        </div>
+                        
+                        <p>Neither urgent nor important</p>
+        
+                        <div *ngFor="let item of group4" class="input d-flex w-100 cursor-pointer align-items-center">
+                            {{item.title}}
+                            <div class="ms-3 d-flex">
+                                <div *ngFor="let task_tag of (item.tasks_x_tags || [])" class="attr me-2">
+                                    {{task_tag.tags?.title}}
+                                </div>
+                            </div>
+                            <button class="btn btn--null ms-auto" (click)="edit(item)">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn btn--null ms-2" (click)="delete(item)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="main-container w-100 mt-4">
-    
-            <!-- ?-----CAJA TRES----- -->
-            <div class="container__box">
-                <div class="delegate box">
-                    <div class="titulo-container">
-                        <h4>Delegate</h4>
-                        <div class="titulo-container_number">{{group3.length}}</div>
+        <p-dialog header="Create task" [(visible)]="displayCreateTask" [style]="{width: '50%'}" [modal]="true" [draggable]="false">
+            <div class="d-flex flex-column" *ngIf="selectedTask">
+                <div class="d-flex flex-column w-100 pb-3">
+                    <label for="" class="mb-1">Title</label>
+                    <input [(ngModel)]="selectedTask.title" type="text" placeholder="Title" class="form-control form-control-md">
+                </div>
+                <div class="d-flex w-100 align-items-center">
+                    <div class="d-flex flex-column w-100 pb-3 pe-3">
+                        <label for="" class="mb-1">Expiration Date</label>
+                        <input [(ngModel)]="selectedTask.expiration" type="date" class="form-control form-control-md">
                     </div>
-                    
-                    <p>Urgent, but less important</p>
-    
-                    <div *ngFor="let item of group3" class="input d-flex w-100 cursor-pointer">
-                        {{item.title}}
-                        <div class="ms-3 d-flex">
-                            <div *ngFor="let task_tag of (item.tasks_x_tags || [])" class="attr me-2">
-                                {{task_tag.tags?.title}}
-                            </div>
-                        </div>
-                        <i class="fa fa-edit ms-auto" (click)="edit(item)"></i>
-                        <i class="fa fa-trash ms-2" (click)="delete(item)"></i>
+                    <div class="d-flex flex-column w-100 pb-3 ps-3">
+                        <label for="" class="mb-1">Priority ({{selectedTask.meta || '0'}})</label>
+                        <p-slider [(ngModel)]="selectedTask.meta" [max]="10" [step]="1" class="w-100"></p-slider>
                     </div>
                 </div>
-            </div>
-    
-    
-            <!-- ?-----CAJA CUATRO----- -->
-            <div class="container__box">
-                <div class="dont-do box">
-                    <div class="titulo-container">
-                        <h4>Don't do</h4>
-                        <div class="titulo-container_number">{{group4.length}}</div>
-                    </div>
-                    
-                    <p>Neither urgent nor important</p>
-    
-                    <div *ngFor="let item of group4" class="input d-flex w-100 cursor-pointer">
-                        {{item.title}}
-                        <div class="ms-3 d-flex">
-                            <div *ngFor="let task_tag of (item.tasks_x_tags || [])" class="attr me-2">
-                                {{task_tag.tags?.title}}
-                            </div>
-                        </div>
-                        <i class="fa fa-edit ms-auto" (click)="edit(item)"></i>
-                        <i class="fa fa-trash ms-2" (click)="delete(item)"></i>
-                    </div>
+                <div class="d-flex flex-column w-100 pb-3">
+                    <label for="" class="mb-1">Description</label>
+                    <textarea [(ngModel)]="selectedTask.description" class="w-100" [rows]="6" pInputTextarea></textarea>
+                </div>
+                <div class="d-flex flex-column w-100 pb-3">
+                    <label for="" class="mb-1">Attributes</label>
+                    <p-multiSelect [appendTo]="'body'" [options]="tags$ | async" [(ngModel)]="selectedTask.tags" defaultLabel="Select attributes" optionValue="$guid" optionLabel="title"></p-multiSelect>
                 </div>
             </div>
-        </div>
+            <ng-template pTemplate="footer">
+                <button icon="pi pi-check mx-2" (click)="cancelCreateTask()" class="btn btn--null">Cancel</button>
+                <button icon="pi pi-check mx-2" (click)="saveTask()" class="btn btn--standard">Save</button>
+            </ng-template>
+        </p-dialog>
     </div>
-    
-    <p-dialog header="Create task" [(visible)]="displayCreateTask" [style]="{width: '50%'}" [modal]="true" [draggable]="false">
-        <div class="d-flex flex-column" *ngIf="selectedTask">
-            <div class="d-flex flex-column w-100 pb-3">
-                <label for="" class="mb-1">Title</label>
-                <input [(ngModel)]="selectedTask.title" type="text" placeholder="Title" class="form-control form-control-md">
-            </div>
-            <div class="d-flex w-100 align-items-center">
-                <div class="d-flex flex-column w-100 pb-3 pe-3">
-                    <label for="" class="mb-1">Expiration Date</label>
-                    <input [(ngModel)]="selectedTask.expiration" type="date" class="form-control form-control-md">
+    <div class="d-block w-100" *ngIf="!customer?.customers_x_tags?.length && !skip">
+        <div class="d-flex w-100" style="height: 100vh; background-color: white;">
+            <div class="d-flex flex-column my-auto w-100">
+                <div class="d-flex w-100 mt-auto mb-5">
+                    <h2 class="title mx-auto">Select your personality</h2>
                 </div>
-                <div class="d-flex flex-column w-100 pb-3 ps-3">
-                    <label for="" class="mb-1">Priority ({{selectedTask.meta || '0'}})</label>
-                    <p-slider [(ngModel)]="selectedTask.meta" [max]="10" [step]="1" class="w-100"></p-slider>
+                <div class="mx-auto mb-auto">
+                    <img width="512px" src="assets/eneagrama.jpg" alt="" class="mt-4">
                 </div>
-            </div>
-            <div class="d-flex flex-column w-100 pb-3">
-                <label for="" class="mb-1">Description</label>
-                <textarea [(ngModel)]="selectedTask.description" class="w-100" [rows]="6" pInputTextarea></textarea>
-            </div>
-            <div class="d-flex flex-column w-100 pb-3">
-                <label for="" class="mb-1">Attributes</label>
-                <p-multiSelect [appendTo]="'body'" [options]="tags$ | async" [(ngModel)]="selectedTask.tags" defaultLabel="Select attributes" optionValue="$guid" optionLabel="title"></p-multiSelect>
-            </div>
-        </div>
-        <ng-template pTemplate="footer">
-            <button icon="pi pi-check mx-2" (click)="cancelCreateTask()" class="btn btn--null">Cancel</button>
-            <button icon="pi pi-check mx-2" (click)="saveTask()" class="btn btn--standard">Save</button>
-        </ng-template>
-    </p-dialog>
-</div>
-<div class="d-block w-100" *ngIf="!customer?.$meta && !skip">
-    <div class="d-flex w-100" style="height: 100vh; background-color: white;">
-        <div class="d-flex flex-column my-auto w-100">
-            <div class="d-flex w-100 mt-auto mb-5">
-                <h2 class="title mx-auto">Select your personality</h2>
-            </div>
-            <div class="mx-auto mb-auto">
-                <img width="512px" src="assets/eneagrama.jpg" alt="" class="mt-4">
-            </div>
-            <div class="d-flex w-100 py-4 mb-5 pb-5" [ngClass]="{'d-none': doingTest}">
-                <div class="mx-auto">
-                    <button (click)="skip = true" class="btn btn--null py-4 px-5 me-2">
-                        <span>
-                            Skip
-                        </span>
-                    </button>
-                    <button (click)="doingTest = 1" class="btn btn--standard py-4 px-5 ms-2">
-                        <span>
-                            Start
-                        </span>
-                    </button>
+                <div class="d-flex w-100 py-4 mb-5 pb-5" [ngClass]="{'d-none': doingTest}">
+                    <div class="mx-auto">
+                        <button (click)="skip = true" class="btn btn--null py-4 px-5 me-2">
+                            <span>
+                                Skip
+                            </span>
+                        </button>
+                        <button (click)="doingTest = 1" class="btn btn--standard py-4 px-5 ms-2">
+                            <span>
+                                Start
+                            </span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div style="width: 70vw" class="d-flex questions" *ngIf="doingTest === 1">
-            <div class="d-flex w-100 flex-column my-auto">
-                <div class="d-flex align-items-center w-100 mb-4" *ngFor="let item of preguntas1; index as index">
-                    <h3 class="title me-4">{{item}}</h3>
-                    <span style="font-size: 18px;" class="me-1">Yes</span>
-                    <input (click)="eneagrama[index] = 1" [value]="1" [checked]="eneagrama[index] == 1" type="checkbox" style="height: 20px;width:20px;">
-                    <span style="font-size: 18px;" class="ms-4 me-1">No</span>
-                    <input (click)="eneagrama[index] = 0" [value]="0" [checked]="eneagrama[index] == 0" type="checkbox" style="width: 20px;height: 20px;">
-                </div>
-                <div class="d-flex">
-                    <button [disabled]="isEmptyOption(0, 9)" (click)="doingTest = 2" class="btn btn--standard py-4 px-5 mt-2">
-                        <span>
-                            Next
-                            <i class="fa fa-arrow-right ms-2"></i>
-                        </span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div style="width: 70vw" class="d-flex questions" *ngIf="doingTest === 2">
-            <div class="d-flex w-100 flex-column my-auto">
-                <div class="d-flex align-items-center w-100 mb-4" *ngFor="let item of preguntas2; index as index">
-                    <h3 class="title me-4">{{item}}</h3>
-                    <span style="font-size: 18px;" class="me-1">Yes</span>
-                    <input (click)="eneagrama[index + 9] = 1" [value]="1" [checked]="eneagrama[index + 9] == 1" type="checkbox" style="height: 20px;width:20px;">
-                    <span style="font-size: 18px;" class="ms-4 me-1">No</span>
-                    <input (click)="eneagrama[index + 9] = 0" [value]="0" [checked]="eneagrama[index + 9] == 0" type="checkbox" style="width: 20px;height: 20px;">
-                </div>
-                <div class="d-flex">
-                    <button [disabled]="isEmptyOption(9, 18)" (click)="doingTest = 3" class="btn btn--standard py-4 px-5 mt-2">
-                        <span>
-                            Next
-                            <i class="fa fa-arrow-right ms-2"></i>
-                        </span>
-                    </button>
+            <div style="width: 70vw" class="d-flex questions" *ngIf="doingTest === 1">
+                <div class="d-flex w-100 flex-column my-auto">
+                    <div class="d-flex align-items-center w-100 mb-4" *ngFor="let item of preguntas1; index as index">
+                        <h3 class="title me-4">{{item}}</h3>
+                        <span style="font-size: 18px;" class="me-1">Yes</span>
+                        <input (click)="eneagrama[index] = 1" [value]="1" [checked]="eneagrama[index] == 1" type="checkbox" style="height: 20px;width:20px;">
+                        <span style="font-size: 18px;" class="ms-4 me-1">No</span>
+                        <input (click)="eneagrama[index] = 0" [value]="0" [checked]="eneagrama[index] == 0" type="checkbox" style="width: 20px;height: 20px;">
+                    </div>
+                    <div class="d-flex">
+                        <button [disabled]="isEmptyOption(0, 9)" (click)="doingTest = 2" class="btn btn--standard py-4 px-5 mt-2">
+                            <span>
+                                Next
+                                <i class="fa fa-arrow-right ms-2"></i>
+                            </span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div style="width: 70vw" class="d-flex questions" *ngIf="doingTest === 3">
-            <div class="d-flex w-100 flex-column my-auto">
-                <div class="d-flex align-items-center w-100 mb-4" *ngFor="let item of preguntas3; index as index">
-                    <h3 class="title me-4">{{item}}</h3>
-                    <span style="font-size: 18px;" class="me-1">Yes</span>
-                    <input (click)="eneagrama[index + 18] = 1" [value]="1" [checked]="eneagrama[index + 18] == 1" type="checkbox" style="height: 20px;width:20px;">
-                    <span style="font-size: 18px;" class="ms-4 me-1">No</span>
-                    <input (click)="eneagrama[index + 18] = 0" [value]="0" [checked]="eneagrama[index + 18] == 0" type="checkbox" style="width: 20px;height: 20px;">
+            <div style="width: 70vw" class="d-flex questions" *ngIf="doingTest === 2">
+                <div class="d-flex w-100 flex-column my-auto">
+                    <div class="d-flex align-items-center w-100 mb-4" *ngFor="let item of preguntas2; index as index">
+                        <h3 class="title me-4">{{item}}</h3>
+                        <span style="font-size: 18px;" class="me-1">Yes</span>
+                        <input (click)="eneagrama[index + 9] = 1" [value]="1" [checked]="eneagrama[index + 9] == 1" type="checkbox" style="height: 20px;width:20px;">
+                        <span style="font-size: 18px;" class="ms-4 me-1">No</span>
+                        <input (click)="eneagrama[index + 9] = 0" [value]="0" [checked]="eneagrama[index + 9] == 0" type="checkbox" style="width: 20px;height: 20px;">
+                    </div>
+                    <div class="d-flex">
+                        <button [disabled]="isEmptyOption(9, 18)" (click)="doingTest = 3" class="btn btn--standard py-4 px-5 mt-2">
+                            <span>
+                                Next
+                                <i class="fa fa-arrow-right ms-2"></i>
+                            </span>
+                        </button>
+                    </div>
                 </div>
-                <div class="d-flex">
-                    <button [disabled]="isEmptyOption(18, 27)" (click)="saveTest()" class="btn btn--standard py-4 px-5 mt-2">
-                        <span>
-                            <i class="fa fa-save me-2"></i>
-                            Save
-                        </span>
-                    </button>
+            </div>
+            <div style="width: 70vw" class="d-flex questions" *ngIf="doingTest === 3">
+                <div class="d-flex w-100 flex-column my-auto">
+                    <div class="d-flex align-items-center w-100 mb-4" *ngFor="let item of preguntas3; index as index">
+                        <h3 class="title me-4">{{item}}</h3>
+                        <span style="font-size: 18px;" class="me-1">Yes</span>
+                        <input (click)="eneagrama[index + 18] = 1" [value]="1" [checked]="eneagrama[index + 18] == 1" type="checkbox" style="height: 20px;width:20px;">
+                        <span style="font-size: 18px;" class="ms-4 me-1">No</span>
+                        <input (click)="eneagrama[index + 18] = 0" [value]="0" [checked]="eneagrama[index + 18] == 0" type="checkbox" style="width: 20px;height: 20px;">
+                    </div>
+                    <div class="d-flex">
+                        <button [disabled]="isEmptyOption(18, 27)" (click)="saveTest()" class="btn btn--standard py-4 px-5 mt-2">
+                            <span>
+                                <i class="fa fa-save me-2"></i>
+                                Save
+                            </span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

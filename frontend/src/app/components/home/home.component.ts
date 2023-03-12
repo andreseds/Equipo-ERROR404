@@ -11,6 +11,7 @@ import jwt_decode from 'jwt-decode';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+    public ready: boolean = false;
     public displayCreateTask: boolean = false;
     public selectedTask: any = null;
     public tags: any[] = [];
@@ -31,27 +32,37 @@ export class HomeComponent implements OnInit {
     constructor(private inertia: InertiaService, private router: Router) { }
 
     async ngOnInit(): Promise<void> {
-        this.search();
-
         await this.loadCustomer();
+
+        await this.search();
 
         this.tags = (await this.inertia.getElements('tags', {
             title: '',
             description: ''
         }))?.map(x => x.tags);
         this.tags$.next(this.tags);
+
+        this.ready = true;
     }
 
     public async loadCustomer() {
         const result = (await this.inertia.getElements('customers', {
-            $creator: [{op: 'equals', val: (<any>jwt_decode(`${this.inertia.token}`)).user.$id}]
-        }))?.map(x => x.tags);
+            $creator: [{op: 'equals', val: (<any>jwt_decode(`${this.inertia.token}`)).user.$id}],
+            meta: '',
+            customers_x_tags: [{
+                tags: {
+                    title: ''
+                }
+            }]
+        }))?.map(x => x.customers);
 
         if (result.length) {
             this.customer = result[0];
         } else {
             this.customer = {};
         }
+
+        console.log(this.customer)
     }
 
     public async search(): Promise<void> {
@@ -69,6 +80,12 @@ export class HomeComponent implements OnInit {
 
         for (const task of this.tasks) {
             task.$points = (new Date(task.expiration)).getTime() / parseInt(task.meta || '1');
+            if (this.customer.meta) {
+                console.log(this.customer?.meta);
+                if (task.tasks_x_tags?.find((x: any) => x.tags?.$guid?.toLowerCase() === this.customer.meta.toLowerCase())) {
+                    task.$points /= 1.1;
+                }
+            }
             task.expiration = task.expiration ? task.expiration.split('T')[0] : null;
         }
 
@@ -151,6 +168,7 @@ export class HomeComponent implements OnInit {
 
     public edit(item: any): void {
         this.displayCreateTask = true;
+        console.log(this.displayCreateTask)
         this.selectedTask = clone(item);
 
         this.selectedTask.tags = [];
@@ -185,8 +203,41 @@ export class HomeComponent implements OnInit {
         return this.eneagrama.slice(a, b).filter(x => x === null).length ? true : false;
     }
 
-    saveTest() {
-        // hacer los calculos aqui, la matriz con los valores finales es la variable this.eneagrama. Es un array con valores 0 y 1 segun tus respuestas
+    async saveTest() {
+        const box = [[0,0,0,0,1,0,1,0,1,1,1,0,0,0,1,1,0,0,1,1,0,1,0,1,1,1,0,'Reformer'],
+        [0,0,1,0,1,0,0,0,1,1,1,1,0,0,1,0,0,0,0,1,0,1,0,0,1,0,0,'Helper'],
+        [0,0,1,0,1,0,0,0,1,1,0,1,0,0,1,0,0,1,0,1,0,1,0,0,1,0,0,'Achiever'],
+        [0,0,1,0,1,0,0,1,1,1,0,1,1,0,1,0,0,1,0,1,1,1,1,0,1,0,0,'Individualist'],
+        [0,0,0,0,1,0,1,1,1,1,0,0,1,1,1,0,0,0,0,1,0,1,1,1,1,0,0,'Investigator'],
+        [0,0,1,0,1,0,1,0,1,1,1,1,0,0,1,1,0,0,1,1,1,1,0,0,1,1,0,'Loyalist'],
+        [0,0,1,0,1,0,0,0,1,1,1,1,0,0,1,1,0,1,0,1,1,1,0,0,1,1,0,'Enthusiast'],
+        [0,0,1,0,1,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0,'Challenger'],
+        [1,1,0,1,0,1,1,0,0,0,1,0,0,0,0,1,1,0,1,0,0,0,0,0,0,1,1,'Peacemaker']];
+
+        for (let m = 0; m < box.length; m++) {
+            for (let n = 0; n < this.eneagrama.length; n++) {
+                if (box[m][n] === this.eneagrama[n]) {
+                    box[m][n] = 2;
+                }        
+            }
+        }
+
+        for (let m = 0; m < box.length; m++) {
+            box[m] = box[m].filter(x => x === 2 || typeof x === 'string');
+        }
+
+        box.sort((a, b) => b.length - a.length);
+        console.log(box)
+        const personality = box[0][box[0].length - 1];
+        this.customer.meta = personality;
+        this.customer.customers_x_tags = [{
+            tags: this.tags.find(x => x.$guid === personality)
+        }]
+
+        console.log(this.customer);
+
+        await this.inertia.saveElement('customers', this.customer)
+        await this.loadCustomer();
         this.skip = true;
     }
 }
