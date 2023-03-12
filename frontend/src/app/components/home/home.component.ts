@@ -3,6 +3,7 @@ import { InertiaService } from '../../services/inertia.service';
 import { BehaviorSubject } from 'rxjs';
 import { clone } from 'src/app/services';
 import { Router } from '@angular/router';
+import jwt_decode from 'jwt-decode';
 
 @Component({
     selector: 'app-home',
@@ -19,17 +20,38 @@ export class HomeComponent implements OnInit {
     public group3: any[] = [];
     public group4: any[] = [];
     public tags$: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+    public customer: any = null;
+    public skip: boolean = false;
+    public doingTest: number = 0;
+    public preguntas1: any[] = ['Do you trust most people?','Do you tend to be a people-pleaser?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?'];
+    public preguntas2: any[] = ['Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?'];
+    public preguntas3: any[] = ['Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?','Do you trust most people?'];
+    public eneagrama: any[] = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
 
     constructor(private inertia: InertiaService, private router: Router) { }
 
     async ngOnInit(): Promise<void> {
         this.search();
 
+        await this.loadCustomer();
+
         this.tags = (await this.inertia.getElements('tags', {
             title: '',
             description: ''
         }))?.map(x => x.tags);
         this.tags$.next(this.tags);
+    }
+
+    public async loadCustomer() {
+        const result = (await this.inertia.getElements('customers', {
+            $creator: [{op: 'equals', val: (<any>jwt_decode(`${this.inertia.token}`)).user.$id}]
+        }))?.map(x => x.tags);
+
+        if (result.length) {
+            this.customer = result[0];
+        } else {
+            this.customer = {};
+        }
     }
 
     public async search(): Promise<void> {
@@ -157,5 +179,14 @@ export class HomeComponent implements OnInit {
     public async logout(): Promise<void> {
         await this.inertia.logout();
         this.router.navigate(['login']);
+    }
+
+    public isEmptyOption(a: number, b: number): boolean {
+        return this.eneagrama.slice(a, b).filter(x => x === null).length ? true : false;
+    }
+
+    saveTest() {
+        // hacer los calculos aqui, la matriz con los valores finales es la variable this.eneagrama. Es un array con valores 0 y 1 segun tus respuestas
+        this.skip = true;
     }
 }

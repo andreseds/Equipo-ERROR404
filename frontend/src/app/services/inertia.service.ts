@@ -102,7 +102,7 @@ export class InertiaService {
         return [];
     }
     
-    private set token(value: string | null) {
+    public set token(value: string | null) {
         this._token = value ?? '';
         if (value) {
             localStorage.setItem('accessToken', <string>value);
@@ -111,7 +111,7 @@ export class InertiaService {
         }
     }
 
-    private get token(): string | null {
+    public get token(): string | null {
         if (!this._token) {
             this._token = localStorage.getItem('accessToken') ?? '';
         }

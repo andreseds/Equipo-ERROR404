@@ -1,41 +1,41 @@
-<img class="wave" src="img/wave.png">
-<div class="container">
+<img class="wave" src="assets/wave.png">
+<div class="container d-flex w-100">
     <div class="img">
-        <img src="frontend\src\assets\img\bg.svg">
+        <img src="assets\img\bg.svg">
     </div>
-    <div class="login-content">
-        <form action="index.html">
-            <img src="frontend\src\assets\img\avatar.svg">
-            <h2 class="title">Registrate en My Box</h2>
-               <div class="input-div one">
-                  <div class="i">
-                          <i class="fas fa-user"></i>
-                  </div>
-                  <div class="div">
-                          <h5>Username</h5>
-                          <input [(ngModel)]="username" type="text" class="input">
-                  </div>
-               </div>
-               <div class="input-div pass">
-                  <div class="i"> 
-                       <i class="fas fa-lock"></i>
-                  </div>
-                  <div class="div">
-                       <h5>Contraseña</h5>
-                       <input [(ngModel)]="password" type="password" class="input">
-               </div>
+    <div class="login-content m-auto d-flex flex-column">
+        <img src="assets\img\avatar.svg">
+        <h2 class="title">Registrate en Team Box</h2>
+        <div class="input-div one w-100">
+            <div class="i">
+                <i class="fas fa-user"></i>
             </div>
-            <div class="input-div pass">
-                <div class="i"> 
-                     <i class="fas fa-lock"></i>
-                </div>
-                <div class="div">
-                     <h5>Confirme su Contraseña</h5>
-                     <input [(ngModel)]="confirmPassword" type="password" class="input">
-             </div>
-          </div>
-          <p> Tienes ya tu propia box?</p>
-            <a href="login">Haz login</a>
-            <input type="submit" class="btn" value="Registrate">
-        </form>
+            <div class="div">
+                <h5>Username</h5>
+                <input [(ngModel)]="username" type="text" class="input">
+            </div>
+        </div>
+        <div class="input-div pass w-100">
+            <div class="i">
+                <i class="fas fa-lock"></i>
+            </div>
+            <div class="div">
+                <h5>Contraseña</h5>
+                <input [(ngModel)]="password" type="password" class="input">
+            </div>
+        </div>
+        <div class="input-div pass w-100">
+            <div class="i">
+                <i class="fas fa-lock"></i>
+            </div>
+            <div class="div">
+                <h5>Confirme su Contraseña</h5>
+                <input [(ngModel)]="confirmPassword" type="password" class="input">
+            </div>
+        </div>
+        <div class="d-flex text-center mx-auto">
+            <p> Tienes ya tu propia box?</p>
+            <a class="ms-1" href="login">Haz login</a>
+        </div>
+        <button (click)="register()" class="btn">Register</button>
     </div>

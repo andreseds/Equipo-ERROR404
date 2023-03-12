@@ -1,35 +1,32 @@
-<form action="login.php" method="post">
-    <img class="wave" src="img/wave.png">
-	<div class="container">
-		<div class="img">
-			<img src="frontend\src\assets\bg.svg">
-		</div>
-		<div class="login-content">
-			<form action="index.html">
-				<img src="frontend\src\assets\avatar.svg">
-				<h2 class="title">Bienvenido a My Box</h2>
-           		<div class="input-div one">
-           		   <div class="i">
-           		   		<i class="fas fa-user"></i>
-           		   </div>
-           		   <div class="div">
-           		   		<h5>Username</h5>
-           		   		<input [(ngModel)]="username" type="text" class="input">
-           		   </div>
-           		</div>
-           		<div class="input-div pass">
-           		   <div class="i"> 
-           		    	<i class="fas fa-lock"></i>
-           		   </div>
-           		   <div class="div">
-           		    	<h5>Contraseña</h5>
-           		    	<input [(ngModel)]="password" type="password" class="input">
-            	   </div>
-            	</div>
-            	<a href="register">Registrate   </a>
-            	<input type="submit" class="btn" value="Login">
-            </form>
+<div class="d-flex w-100">
+    <img class="wave" src="assets/wave.png" />
+    <div class="container m-auto">
+        <div class="img">
+            <img src="assets\bg.svg" />
+        </div>
+        <div class="login-content d-flex flex-column w-100 m-auto">
+            <img src="assets\avatar.svg" />
+            <h2 class="title">Bienvenido a Team Box</h2>
+            <div class="input-div one w-100">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="div">
+                    <h5>Username</h5>
+                    <input autocomplete="off" [(ngModel)]="username" type="text" class="input w-100">
+                </div>
+            </div>
+            <div class="input-div pass w-100">
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                    <h5>Contraseña</h5>
+                    <input autocomplete="off" [(ngModel)]="password" type="password" class="input w-100">
+                </div>
+            </div>
+            <a href="register">Registrate</a>
+            <button (click)="login()" class="btn">Login</button>
         </div>
     </div>
-    <script type="text/javascript" src="main.js"></script>
-</form>
+</div>
