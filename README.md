@@ -2,10 +2,8 @@
 
 Projecto Eisenhower To Do List.
 
-La página es para crear tareas donde según los criterios de importancia o urgencia, la pagina las catalogue según la caja de eisenhower
-Al mismo tiempo, al crear la tarea definir las habilidades que se necesitan para llevarlas a cabo
-
-Según el eneagrama y las habilidades de cada persona, se te recomienda a quien delegar cada tarea.
+La página es un programa para crear y organizar tareas donde según los criterios de importancia y urgencia la pagina las catalogue según la caja de eisenhower.
+Al mismo tiempo, al crear la tarea definir las habilidades que se necesitan para llevarlas a cabo, según el eneatipo y las habilidades de cada persona, se te recomienda a quien delegar cada tarea.
 
 
 
@@ -48,9 +46,6 @@ andrés
 - React, Javascript, Wordpress, PHP, Python, CSS, Sass, Tailwind, MySQL, HTML
 - Hice para mi tesis un bot de telegram que hace un calculo de una variable de diseño para columnas de destilación/absorcion (jaja es mas sencillo de lo que suena, son unas ecuaciones que se desarrollan a valores input que se le dan y te da el resultado, se automatizó ese calculo)
 
-ideas para el proyecto //
-- videojuego 
-- Si mencionan algo sobre productos a carrito de compra tengo un "product builder", practicamente seleccionas un area en una imagen y dentro del recuadro cargas imagenes o texto. Es para personalizacion de productos como ropa (Henry)
 
 /////////////////// normas codicon
 
