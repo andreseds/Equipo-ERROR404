@@ -120,7 +120,8 @@ export class HomeComponent implements OnInit {
         this.selectedTask = {
             title: '',
             description: '',
-            meta: 5,
+            meta: 0,
+            meta1: 0,
             expiration: null,
             tags: []
         }
