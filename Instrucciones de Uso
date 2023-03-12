@@ -23,7 +23,8 @@ fase 2 (backend): si esta es la segunda o mayor vez que quieres usar el programa
 
 fase 3 (frontend): Si es la primera vez que usas el programa
 
-- Instala el CLI de Angular: npm -g @angular/cli
+- npm install dentro de la carpeta inertia si es la primera vez
+- Instala el CLI de Angular: npm install -g @angular/cli
 - abrir una segund terminal y abrir carpeta Equipo-Error404-version1\frontend
 - Iniciar el servidos con el comando "ng serve"
 
@@ -31,4 +32,4 @@ fase 3 (frontend): Si es la primera vez que usas el programa
 
 - Instala el CLI de Angular: npm -g @angular/cli
 - abrir una segund terminal y abrir carpeta Equipo-Error404-version1\frontend
-- Iniciar el servidos con el comando "ng serve"
+- Iniciar el servidor con el comando "ng serve"
