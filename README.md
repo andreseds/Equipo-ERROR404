@@ -5,6 +5,7 @@ Projecto Eisenhower To Do List.
 La página es un programa para crear y organizar tareas donde según los criterios de importancia y urgencia la pagina las catalogue según la caja de eisenhower.
 Al mismo tiempo, al crear la tarea definir las habilidades que se necesitan para llevarlas a cabo, según el eneatipo y las habilidades de cada persona, se te recomienda a quien delegar cada tarea.
 
+https://docs.google.com/document/d/13zbwlVuvC0swte-1JwxXxfeZK1zODFKzF3hKeUiF28Q/edit#
 
 
 //
